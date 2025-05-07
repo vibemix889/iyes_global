@@ -145,7 +145,7 @@ const Index = () => {
             </div>
             <div>
               <h2 className="text-3xl md:text-4xl font-anton gradient-text mb-6">
-                Empowering Youth Since 2014
+                Empowering Youth Since 2015
               </h2>
               <p className="text-white/80 mb-4">
                 The International Youth Empowerment Summit (IYES) is a transformative annual conference designed to inspire, equip, and connect young people for leadership and impact in their communities and beyond.
