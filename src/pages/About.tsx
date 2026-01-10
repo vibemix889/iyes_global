@@ -82,21 +82,21 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-3xl font-anton gradient-text mb-6">Our Vision</h2>
-              <p className="text-white/80 mb-8">
+              <h2 className="text-3xl font-heading text-foreground mb-6">Our Vision</h2>
+              <p className="text-muted-foreground mb-8">
                 To raise a generation of empowered youth who are equipped with the knowledge, skills, and spiritual foundation to transform their communities, nations, and the world at large.
               </p>
               
-              <h2 className="text-3xl font-anton gradient-text mb-6">Our Mission</h2>
-              <p className="text-white/80">
+              <h2 className="text-3xl font-heading text-foreground mb-6">Our Mission</h2>
+              <p className="text-muted-foreground">
                 To provide platforms, resources, and mentorship that inspire, equip, and connect young people for leadership and impact in every sphere of society.
               </p>
             </div>
             <div className="relative">
               <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -z-10"></div>
               <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl -z-10"></div>
-              <div className="bg-secondary/50 p-8 rounded-xl border border-white/10">
-                <h3 className="text-2xl font-anton text-white mb-6">Why IYES Matters</h3>
+              <div className="bg-card/70 p-8 rounded-xl border border-border/60">
+                <h3 className="text-2xl font-heading text-foreground mb-6">Why IYES Matters</h3>
                 <ul className="space-y-4">
                   {[
                     "Creates a platform for youth to discover their purpose and potential",
@@ -107,7 +107,7 @@ const About = () => {
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start">
                       <span className="text-accent mr-2">•</span>
-                      <span className="text-white/80">{item}</span>
+                      <span className="text-muted-foreground">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -121,17 +121,17 @@ const About = () => {
       <section className="section-padding bg-secondary/50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-anton gradient-text mb-4">Our Core Values</h2>
-            <p className="text-white/80 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">Our Core Values</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               These principles guide everything we do at IYES
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {coreValues.map((value, idx) => (
-              <div key={idx} className="bg-background/50 p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:transform hover:-translate-y-1">
-                <h3 className="text-xl font-anton text-white mb-2">{value.title}</h3>
-                <p className="text-white/70">{value.description}</p>
+              <div key={idx} className="bg-card/70 p-6 rounded-xl border border-border/60 hover:shadow-lg transition-all duration-300 hover:transform hover:-translate-y-1">
+                <h3 className="text-xl font-heading text-foreground mb-2">{value.title}</h3>
+                <p className="text-muted-foreground">{value.description}</p>
               </div>
             ))}
           </div>
@@ -153,11 +153,11 @@ const About = () => {
               </div>
             </div>
             <div className="md:col-span-7">
-              <h2 className="text-3xl md:text-4xl font-anton gradient-text mb-6">
+              <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-6">
                 Pastor Brian Jones Amoateng
               </h2>
-              <h3 className="text-xl text-white/90 mb-6">Founder & Visionary</h3>
-              <div className="space-y-4 text-white/80">
+              <h3 className="text-xl text-foreground mb-6">Founder & Visionary</h3>
+              <div className="space-y-4 text-muted-foreground">
                 <p>
                   Pastor Brian Jones Amoateng is a dynamic preacher, visionary leader, and philanthropist with a passion for youth empowerment and development. Born and raised in Ghana, he founded the International Youth Empowerment Summit (IYES) in 2010 with a vision to inspire young people to discover and fulfill their God-given potential.
                 </p>
@@ -183,17 +183,17 @@ const About = () => {
       <section className="section-padding bg-gradient-to-r from-primary/10 to-accent/10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-anton gradient-text mb-4">
+            <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
               Our Journey Through the Years
             </h2>
-            <p className="text-white/80 max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               From humble beginnings to a global movement
             </p>
           </div>
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-white/20"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-border/60"></div>
             
             {/* Timeline items */}
             <div className="space-y-16">
@@ -201,10 +201,10 @@ const About = () => {
                 <div key={idx} className={`relative flex ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
                   <div className="hidden md:block w-1/2"></div>
                   <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full w-4 h-4 bg-primary z-10"></div>
-                  <div className="md:w-1/2 bg-secondary/50 p-6 rounded-xl border border-white/10 relative">
-                    <span className="inline-block text-2xl font-anton text-accent mb-2">{milestone.year}</span>
-                    <h3 className="text-xl font-anton text-white mb-2">{milestone.title}</h3>
-                    <p className="text-white/70">{milestone.description}</p>
+                  <div className="md:w-1/2 bg-card/70 p-6 rounded-xl border border-border/60 relative">
+                    <span className="inline-block text-2xl font-heading text-accent mb-2">{milestone.year}</span>
+                    <h3 className="text-xl font-heading text-foreground mb-2">{milestone.title}</h3>
+                    <p className="text-muted-foreground">{milestone.description}</p>
                   </div>
                 </div>
               ))}
@@ -216,10 +216,10 @@ const About = () => {
       {/* CTA */}
       <section className="section-padding bg-secondary/80">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-anton gradient-text mb-6">
+          <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-6">
             Join Us in Empowering the Next Generation
           </h2>
-          <p className="text-white/80 max-w-2xl mx-auto mb-8">
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
             Whether you're looking to attend IYES, become a partner, or support our vision, we invite you to be part of this transformative movement.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">

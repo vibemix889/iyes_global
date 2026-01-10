@@ -40,7 +40,7 @@ const SpeakerCard = ({ speaker, featured = false }: SpeakerCardProps) => {
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent opacity-100">
         <div className="absolute bottom-0 left-0 right-0 p-4">
-          <h3 className="text-xl font-anton gradient-text">{speaker.name}</h3>
+          <h3 className="text-xl font-heading text-white">{speaker.name}</h3>
           <p className="text-white/80 text-sm mt-1">
             {speaker.role}, {speaker.organization}
           </p>

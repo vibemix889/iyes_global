@@ -90,39 +90,42 @@ const Index = () => {
             alt="IYES Conference"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/60 to-black/35"></div>
         </div>
         <div className="container mx-auto px-4 relative z-10 text-center md:text-left py-20">
           <div className="grid grid-cols-1 items-center">
             {/* Iyes date pill */}
             <div className="order-2 md:order-1 animate-fade-in">
-              <span className="inline-block font-anton text-accent bg-accent/10 px-3 py-1 rounded-full text-sm mb-4">
+              <span className="inline-block font-heading text-white bg-white/10 px-3 py-1 rounded-full text-sm mb-4">
                 MARCH 12-14, 2025
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-anton mb-4">
-                <span className="gradient-text">INTERNATIONAL</span>
+              <h1 className="font-heading text-white mb-4 leading-[0.95] text-[clamp(3rem,6.8vw,6.25rem)]">
+                INTERNATIONAL
                 <br />
-                <span className="text-white">YOUTH EMPOWERMENT</span>
+                YOUTH EMPOWERMENT
                 <br />
-                <span className="gradient-text">SUMMIT</span>
+                SUMMIT
               </h1>
-              <p className="text-lg text-white/80 mb-6 max-w-lg">
+              <p className="mb-6 max-w-xl text-[clamp(1.05rem,1.4vw,1.25rem)] text-white/85">
                 Join us for three days of inspiration, networking, and transformation with world-class speakers and youth leaders.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-primary hover:bg-primary/90 text-white">
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
                   Register Now
                 </Button>
-                <Button variant="outline">
+                <Button
+                  variant="outline"
+                  className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                >
                   View Schedule
                 </Button>
               </div>
             </div>
             {/* countdown div */}
             <div className="order-1 md:order-2  justify-center hidden">
-              <div className="bg-secondary/20 backdrop-blur-sm p-6 rounded-xl border border-white/10 w-full max-w-md">
-                <h3 className="text-2xl font-anton gradient-text mb-2">Countdown to IYES 2025</h3>
-                <p className="text-white/70 mb-4 text-sm">
+              <div className="bg-card/70 backdrop-blur-sm p-6 rounded-xl border border-border/60 w-full max-w-md">
+                <h3 className="text-2xl font-heading text-foreground mb-2">Countdown to IYES 2025</h3>
+                <p className="text-muted-foreground mb-4 text-sm">
                   Mark your calendar for the biggest youth summit of the year
                 </p>
                 <CountdownTimer />
@@ -144,31 +147,31 @@ const Index = () => {
               />
             </div>
             <div>
-              <h2 className="text-3xl md:text-4xl font-anton gradient-text mb-6">
+              <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-6">
                 Empowering Youth Since 2015
               </h2>
-              <p className="text-white/80 mb-4">
+              <p className="text-muted-foreground mb-4">
                 The International Youth Empowerment Summit (IYES) is a transformative annual conference designed to inspire, equip, and connect young people for leadership and impact in their communities and beyond.
               </p>
-              <p className="text-white/80 mb-6">
+              <p className="text-muted-foreground mb-6">
                 Founded by Pastor Brian Jones Amoateng, IYES has grown from a local gathering to an international platform that has touched the lives of over 100,000 youth across Africa and the diaspora.
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mb-6">
-                <div className="bg-secondary/80 p-4 rounded-lg">
-                  <span className="text-3xl font-anton gradient-text">11</span>
-                  <p className="text-white/70 text-sm">Years</p>
+                <div className="bg-background/70 p-4 rounded-lg border border-border/60">
+                  <span className="text-3xl font-heading text-foreground">11</span>
+                  <p className="text-muted-foreground text-sm">Years</p>
                 </div>
-                <div className="bg-secondary/80 p-4 rounded-lg">
-                  <span className="text-3xl font-anton gradient-text">100K+</span>
-                  <p className="text-white/70 text-sm">Participants</p>
+                <div className="bg-background/70 p-4 rounded-lg border border-border/60">
+                  <span className="text-3xl font-heading text-foreground">100K+</span>
+                  <p className="text-muted-foreground text-sm">Participants</p>
                 </div>
-                <div className="bg-secondary/80 p-4 rounded-lg">
-                  <span className="text-3xl font-anton gradient-text">150+</span>
-                  <p className="text-white/70 text-sm">Speakers</p>
+                <div className="bg-background/70 p-4 rounded-lg border border-border/60">
+                  <span className="text-3xl font-heading text-foreground">150+</span>
+                  <p className="text-muted-foreground text-sm">Speakers</p>
                 </div>
-                <div className="bg-secondary/80 p-4 rounded-lg">
-                  <span className="text-3xl font-anton gradient-text">5+</span>
-                  <p className="text-white/70 text-sm">Countries</p>
+                <div className="bg-background/70 p-4 rounded-lg border border-border/60">
+                  <span className="text-3xl font-heading text-foreground">5+</span>
+                  <p className="text-muted-foreground text-sm">Countries</p>
                 </div>
               </div>
               <Link to="/about">
@@ -185,10 +188,10 @@ const Index = () => {
       <section className="section-padding">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-anton gradient-text mb-4">
+            <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
               Featured Speakers
             </h2>
-            <p className="text-white/80 max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               Learn from world-class leaders, entrepreneurs, and changemakers who are shaping the future
             </p>
           </div>
@@ -216,13 +219,13 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             <div className="order-2 md:order-1 md:col-span-7">
               <span className="text-accent font-medium">Founder & Visionary</span>
-              <h2 className="text-3xl md:text-4xl font-anton gradient-text my-4">
+              <h2 className="text-3xl md:text-4xl font-heading text-foreground my-4">
                 Pastor Brian Jones Amoateng
               </h2>
-              <p className="text-white/80 mb-4">
+              <p className="text-muted-foreground mb-4">
                 Pastor Brian Jones Amoateng is the visionary founder of the International Youth Empowerment Summit, dedicated to raising a generation of empowered youth who will transform their communities and nations.
               </p>
-              <p className="text-white/80 mb-6">
+              <p className="text-muted-foreground mb-6">
                 His passion for youth development has led him to create a platform that connects young people with opportunities, mentorship, and spiritual guidance. Through IYES, he has impacted thousands of young lives across Africa and beyond.
               </p>
               <Link to="/about#visionary">
@@ -249,10 +252,10 @@ const Index = () => {
       <section className="section-padding">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-anton gradient-text mb-4">
+            <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
               Latest from Our Blog
             </h2>
-            <p className="text-white/80 max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               Stay updated with insights, stories, and announcements from the IYES community
             </p>
           </div>
@@ -278,25 +281,28 @@ const Index = () => {
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://source.unsplash.com/random/1920x1080?audience,dark"
+            src="https://source.unsplash.com/random/1920x1080?audience,conference"
             alt="Join IYES"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background to-background/80"></div>
+          <div className="absolute inset-0 bg-black/65"></div>
         </div>
         <div className="container mx-auto px-4 relative z-10 text-center">
           <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-anton gradient-text mb-6">
+            <h2 className="text-3xl md:text-4xl font-heading text-white mb-6">
               Be Part of IYES 2025
             </h2>
-            <p className="text-white/80 text-lg mb-8">
+            <p className="text-white/85 text-lg mb-8">
               Don't miss this opportunity to connect, learn, and grow with fellow young leaders from around the world.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button className="bg-primary hover:bg-primary/90 text-white">
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
                 Register Now
               </Button>
-              <Button variant="outline">
+              <Button
+                variant="outline"
+                className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+              >
                 Become a Partner
               </Button>
             </div>

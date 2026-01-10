@@ -20,6 +20,13 @@ export default {
 		},
 		extend: {
 			fontFamily: {
+				// Agora-inspired typography:
+				// - headings: "halyard-display" (from Typekit, as used on the demo)
+				// - body: "DM Sans" (Google Fonts, as used on the demo)
+				heading: ['halyard-display', '"Halyard Display"', '"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				sans: ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+
+				// Legacy tokens (kept to avoid accidental breakage if any class remains)
 				anton: ['Anton', 'sans-serif'],
 				inter: ['Inter', 'sans-serif'],
 			},

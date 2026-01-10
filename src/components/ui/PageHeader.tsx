@@ -24,11 +24,11 @@ const PageHeader = ({
     <div className={`py-16 ${bgClasses}`}>
       <div className="container mx-auto px-4 text-center">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl gradient-text mb-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
             {title}
           </h1>
           {subtitle && (
-            <p className="text-lg text-white/80 mt-4 max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground mt-4 max-w-2xl mx-auto">
               {subtitle}
             </p>
           )}

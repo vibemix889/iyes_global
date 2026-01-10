@@ -48,7 +48,7 @@ const ContactForm = () => {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="name" className="block text-white/80 text-sm font-medium mb-2">
+          <label htmlFor="name" className="block text-foreground text-sm font-medium mb-2">
             Your Name
           </label>
           <input
@@ -58,12 +58,12 @@ const ContactForm = () => {
             required
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-secondary/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-white placeholder:text-white/40"
+            className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground placeholder:text-muted-foreground"
             placeholder="John Doe"
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-white/80 text-sm font-medium mb-2">
+          <label htmlFor="email" className="block text-foreground text-sm font-medium mb-2">
             Your Email
           </label>
           <input
@@ -73,14 +73,14 @@ const ContactForm = () => {
             required
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-secondary/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-white placeholder:text-white/40"
+            className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground placeholder:text-muted-foreground"
             placeholder="johndoe@example.com"
           />
         </div>
       </div>
       
       <div>
-        <label htmlFor="subject" className="block text-white/80 text-sm font-medium mb-2">
+        <label htmlFor="subject" className="block text-foreground text-sm font-medium mb-2">
           Subject
         </label>
         <select
@@ -89,19 +89,19 @@ const ContactForm = () => {
           required
           value={formData.subject}
           onChange={handleChange}
-          className="w-full px-4 py-3 bg-secondary/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-white appearance-none"
+          className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground appearance-none"
         >
-          <option value="" className="bg-secondary text-white">Select a subject</option>
-          <option value="general" className="bg-secondary text-white">General Inquiry</option>
-          <option value="registration" className="bg-secondary text-white">Registration</option>
-          <option value="sponsorship" className="bg-secondary text-white">Sponsorship</option>
-          <option value="speaking" className="bg-secondary text-white">Speaking Opportunity</option>
-          <option value="other" className="bg-secondary text-white">Other</option>
+          <option value="" className="bg-background text-foreground">Select a subject</option>
+          <option value="general" className="bg-background text-foreground">General Inquiry</option>
+          <option value="registration" className="bg-background text-foreground">Registration</option>
+          <option value="sponsorship" className="bg-background text-foreground">Sponsorship</option>
+          <option value="speaking" className="bg-background text-foreground">Speaking Opportunity</option>
+          <option value="other" className="bg-background text-foreground">Other</option>
         </select>
       </div>
       
       <div>
-        <label htmlFor="message" className="block text-white/80 text-sm font-medium mb-2">
+        <label htmlFor="message" className="block text-foreground text-sm font-medium mb-2">
           Message
         </label>
         <textarea
@@ -111,7 +111,7 @@ const ContactForm = () => {
           required
           value={formData.message}
           onChange={handleChange}
-          className="w-full px-4 py-3 bg-secondary/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-white placeholder:text-white/40"
+          className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground placeholder:text-muted-foreground"
           placeholder="Your message here..."
         />
       </div>

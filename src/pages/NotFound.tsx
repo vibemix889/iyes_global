@@ -8,11 +8,11 @@ const NotFound = () => {
     <Layout>
       <div className="min-h-[70vh] flex items-center justify-center">
         <div className="text-center max-w-xl px-4">
-          <h1 className="text-6xl md:text-8xl font-anton gradient-text mb-6">404</h1>
-          <p className="text-xl text-white mb-8">
+          <h1 className="text-6xl md:text-8xl font-heading text-foreground mb-6">404</h1>
+          <p className="text-xl text-foreground mb-8">
             Oops! The page you're looking for doesn't exist.
           </p>
-          <p className="text-white/70 mb-10">
+          <p className="text-muted-foreground mb-10">
             It seems you've ventured into uncharted territory. Let's get you back on track to the IYES experience.
           </p>
           <Link to="/">

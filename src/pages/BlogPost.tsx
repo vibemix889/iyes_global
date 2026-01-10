@@ -102,7 +102,7 @@ const BlogPost = () => {
             <span className="inline-block text-accent text-sm font-medium mb-3">
               {post.category}
             </span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-anton gradient-text mb-4">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading text-foreground mb-4">
               {post.title}
             </h1>
             <div className="flex items-center mb-6">
@@ -114,8 +114,8 @@ const BlogPost = () => {
                 />
               </div>
               <div>
-                <p className="text-white font-medium">{post.author}</p>
-                <p className="text-white/60 text-sm">{post.date}</p>
+                <p className="text-foreground font-medium">{post.author}</p>
+                <p className="text-muted-foreground text-sm">{post.date}</p>
               </div>
             </div>
           </div>
@@ -134,7 +134,7 @@ const BlogPost = () => {
           {/* Article Content */}
           <div className="max-w-4xl mx-auto">
             <div 
-              className="prose prose-lg prose-invert max-w-none mb-12"
+              className="prose prose-lg max-w-none mb-12"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
             
@@ -143,7 +143,7 @@ const BlogPost = () => {
               {post.tags.map((tag, idx) => (
                 <span 
                   key={idx} 
-                  className="bg-secondary/50 text-white/80 px-3 py-1 rounded-full text-sm"
+                  className="bg-secondary/50 text-foreground/80 px-3 py-1 rounded-full text-sm"
                 >
                   #{tag}
                 </span>
@@ -153,18 +153,18 @@ const BlogPost = () => {
             {/* Share Buttons */}
             <div className="flex flex-wrap items-center justify-between border-t border-b border-border/30 py-6 mb-12">
               <div className="mb-4 sm:mb-0">
-                <h3 className="text-lg font-medium text-white mb-2">Share this article</h3>
+                <h3 className="text-lg font-medium text-foreground mb-2">Share this article</h3>
                 <div className="flex space-x-4">
-                  <a href="#" className="text-white/70 hover:text-primary transition-colors">
+                  <a href="#" className="text-foreground/70 hover:text-primary transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                   </a>
-                  <a href="#" className="text-white/70 hover:text-primary transition-colors">
+                  <a href="#" className="text-foreground/70 hover:text-primary transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
                   </a>
-                  <a href="#" className="text-white/70 hover:text-primary transition-colors">
+                  <a href="#" className="text-foreground/70 hover:text-primary transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
                   </a>
-                  <a href="#" className="text-white/70 hover:text-primary transition-colors">
+                  <a href="#" className="text-foreground/70 hover:text-primary transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                   </a>
                 </div>
@@ -181,7 +181,7 @@ const BlogPost = () => {
       <section className="py-16 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="">
-            <h2 className="text-3xl font-anton gradient-text mb-12 text-center">
+            <h2 className="text-3xl font-heading text-foreground mb-12 text-center">
               Related Articles
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -197,10 +197,10 @@ const BlogPost = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-anton gradient-text mb-6">
+            <h2 className="text-2xl md:text-3xl font-heading text-foreground mb-6">
               Ready to Experience IYES for Yourself?
             </h2>
-            <p className="text-white/80 mb-8">
+            <p className="text-muted-foreground mb-8">
               Join us at the next International Youth Empowerment Summit and be part of this transformative experience.
             </p>
             <Button className="bg-primary hover:bg-primary/90">

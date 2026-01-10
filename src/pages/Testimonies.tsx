@@ -126,7 +126,7 @@ const Testimonies = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mx-auto text-primary/70 mb-6"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" /><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" /></svg>
-            <blockquote className="text-xl md:text-2xl text-white font-light italic mb-6">
+            <blockquote className="text-xl md:text-2xl text-foreground font-light italic mb-6">
               IYES didn't just inspire me—it completely transformed my perspective on what's possible for young Africans. The summit connected me with mentors and resources that were pivotal in launching my tech company, which now provides jobs for dozens of young people.
             </blockquote>
             <div className="flex items-center justify-center">
@@ -138,8 +138,8 @@ const Testimonies = () => {
                 />
               </div>
               <div className="text-left">
-                <h4 className="font-anton text-white text-lg">David Asante</h4>
-                <p className="text-white/60">IYES 2017 Alumnus • Founder, AfriTech Solutions</p>
+                <h4 className="font-heading text-foreground text-lg">David Asante</h4>
+                <p className="text-muted-foreground">IYES 2017 Alumnus • Founder, AfriTech Solutions</p>
               </div>
             </div>
           </div>
@@ -150,10 +150,10 @@ const Testimonies = () => {
       <section className="section-padding">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-anton gradient-text mb-4">
+            <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
               Lives Transformed
             </h2>
-            <p className="text-white/80 max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               These stories represent just a fraction of the thousands of young people who have been impacted by IYES
             </p>
           </div>
@@ -170,10 +170,10 @@ const Testimonies = () => {
       <section className="section-padding bg-gradient-to-r from-primary/10 to-accent/10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-anton gradient-text mb-4">
+            <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
               Video Testimonials
             </h2>
-            <p className="text-white/80 max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               Hear directly from IYES participants about their experiences
             </p>
           </div>
@@ -200,8 +200,8 @@ const Testimonies = () => {
                   </div>
                 </div>
                 <div className="p-4 text-center">
-                  <h3 className="font-anton text-white">{item.name}</h3>
-                  <p className="text-white/60 text-sm">{item.role}</p>
+                  <h3 className="font-heading text-foreground">{item.name}</h3>
+                  <p className="text-muted-foreground text-sm">{item.role}</p>
                 </div>
               </div>
             ))}
@@ -232,10 +232,10 @@ const Testimonies = () => {
       <section className="section-padding">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-anton gradient-text mb-4">
+            <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
               Partner Organizations
             </h2>
-            <p className="text-white/80 max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               Organizations that have collaborated with us and support our vision
             </p>
           </div>
@@ -243,7 +243,7 @@ const Testimonies = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
               <div key={item} className="flex items-center justify-center p-6 bg-secondary/30 rounded-lg hover:bg-secondary/50 transition-all duration-300 h-24">
-                <div className="text-white/40 font-medium text-center">
+                <div className="text-muted-foreground/80 font-medium text-center">
                   Partner Logo
                 </div>
               </div>
@@ -256,13 +256,13 @@ const Testimonies = () => {
       <section className="section-padding bg-secondary/50">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-anton gradient-text mb-6">
+            <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-6">
               Share Your IYES Story
             </h2>
-            <p className="text-white/80 mb-8">
+            <p className="text-muted-foreground mb-8">
               Has IYES impacted your life in a meaningful way? We'd love to hear your story and potentially feature it on our platform.
             </p>
-            <button className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+            <button className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg font-medium transition-colors">
               Submit Your Testimony
             </button>
           </div>

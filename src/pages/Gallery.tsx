@@ -76,8 +76,8 @@ const Gallery = () => {
                 key={year}
                 className={`px-4 py-2 rounded-full transition-all ${
                   activeTab === year
-                    ? "bg-primary text-white"
-                    : "bg-background/50 text-white/70 hover:text-white"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-background/50 text-foreground/70 hover:text-foreground"
                 }`}
                 onClick={() => setActiveTab(year)}
               >
@@ -115,10 +115,10 @@ const Gallery = () => {
       <section className="section-padding bg-gradient-to-r from-primary/10 to-accent/10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-anton gradient-text mb-4">
+            <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
               Video Highlights
             </h2>
-            <p className="text-white/80 max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               Experience the energy and impact of IYES through these event recordings
             </p>
           </div>
@@ -179,10 +179,10 @@ const Gallery = () => {
       <section className="section-padding">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-anton gradient-text mb-4">
+            <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
               Memorable Moments
             </h2>
-            <p className="text-white/80 max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               Special highlights from our fifteen-year journey
             </p>
           </div>
@@ -226,7 +226,7 @@ const Gallery = () => {
                 description: "Celebrating 15 years of impact with our biggest summit yet."
               },
             ].map((moment, idx) => (
-              <Card key={idx} className="bg-secondary/50 overflow-hidden group hover:shadow-lg transition-all duration-300 border-0">
+              <Card key={idx} className="bg-card/70 border border-border/60 overflow-hidden group hover:shadow-lg transition-all duration-300">
                 <div className="aspect-video overflow-hidden">
                   <img 
                     src={moment.image} 
@@ -238,8 +238,8 @@ const Gallery = () => {
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-primary font-medium">{moment.year}</span>
                   </div>
-                  <h3 className="text-lg font-anton text-white mb-2">{moment.title}</h3>
-                  <p className="text-white/70 text-sm">{moment.description}</p>
+                  <h3 className="text-lg font-heading text-foreground mb-2">{moment.title}</h3>
+                  <p className="text-muted-foreground text-sm">{moment.description}</p>
                 </CardContent>
               </Card>
             ))}

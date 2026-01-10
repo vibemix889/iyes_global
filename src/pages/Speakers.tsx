@@ -135,14 +135,14 @@ const Speakers = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex flex-wrap gap-3">
               <div>
-                <label htmlFor="yearFilter" className="block text-white/80 text-sm mb-1">
+                <label htmlFor="yearFilter" className="block text-foreground text-sm mb-1">
                   Filter by Year
                 </label>
                 <select
                   id="yearFilter"
                   value={filterYear}
                   onChange={(e) => setFilterYear(e.target.value)}
-                  className="bg-background border border-border rounded px-3 py-2 text-white"
+                  className="bg-background border border-input rounded px-3 py-2 text-foreground"
                 >
                   <option value="all">All Years</option>
                   {years.map((year) => (
@@ -152,14 +152,14 @@ const Speakers = () => {
               </div>
               
               <div>
-                <label htmlFor="categoryFilter" className="block text-white/80 text-sm mb-1">
+                <label htmlFor="categoryFilter" className="block text-foreground text-sm mb-1">
                   Filter by Category
                 </label>
                 <select
                   id="categoryFilter"
                   value={filterCategory}
                   onChange={(e) => setFilterCategory(e.target.value)}
-                  className="bg-background border border-border rounded px-3 py-2 text-white"
+                  className="bg-background border border-input rounded px-3 py-2 text-foreground"
                 >
                   <option value="all">All Categories</option>
                   {categories.map((category) => (
@@ -189,8 +189,8 @@ const Speakers = () => {
           
           {filteredSpeakers.length === 0 && (
             <div className="text-center py-12">
-              <h3 className="text-xl text-white mb-2">No speakers found</h3>
-              <p className="text-white/70">Try changing your filter criteria</p>
+              <h3 className="text-xl text-foreground mb-2">No speakers found</h3>
+              <p className="text-muted-foreground">Try changing your filter criteria</p>
             </div>
           )}
         </div>
@@ -200,10 +200,10 @@ const Speakers = () => {
       <section className="section-padding bg-gradient-to-r from-primary/10 to-accent/10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-anton gradient-text mb-4">
+            <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
               Notable Past Keynote Speakers
             </h2>
-            <p className="text-white/80 max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               IYES has hosted some of the world's most influential leaders over the years
             </p>
           </div>
@@ -243,8 +243,8 @@ const Speakers = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <h3 className="font-anton text-white text-xl">{speaker.name}</h3>
-                <p className="text-white/70">{speaker.role}</p>
+                <h3 className="font-heading text-foreground text-xl">{speaker.name}</h3>
+                <p className="text-muted-foreground">{speaker.role}</p>
                 <p className="text-accent text-sm">IYES {speaker.year}</p>
               </div>
             ))}
@@ -255,10 +255,10 @@ const Speakers = () => {
       {/* CTA */}
       <section className="section-padding bg-secondary/50">
         <div className="container mx-auto px-4 text-center max-w-3xl">
-          <h2 className="text-3xl font-anton gradient-text mb-6">
+          <h2 className="text-3xl font-heading text-foreground mb-6">
             Interested in Speaking at IYES?
           </h2>
-          <p className="text-white/80 mb-8">
+          <p className="text-muted-foreground mb-8">
             We're always looking for passionate, experienced speakers who can inspire and empower the next generation of leaders. If you have expertise to share, we'd love to hear from you.
           </p>
           <Button className="bg-primary hover:bg-primary/90">

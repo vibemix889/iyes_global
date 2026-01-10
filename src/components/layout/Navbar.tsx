@@ -46,7 +46,7 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
             <img src="images/iyes-logo.PNG" width={50} alt="" />
-              {/* <span className="text-2xl font-anton gradient-text tracking-wider">IYES</span> */}
+              {/* <span className="text-2xl font-heading text-foreground tracking-wider">IYES</span> */}
             </Link>
           </div>
           
@@ -65,7 +65,7 @@ const Navbar = () => {
           </nav>
           
           <div className="hidden md:block">
-            <Button variant="default" className="bg-primary hover:bg-primary/90">
+            <Button variant="default" className="bg-primary text-primary-foreground hover:bg-primary/90">
               Register Now
             </Button>
           </div>
@@ -73,7 +73,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-white focus:outline-none"
+              className="text-foreground focus:outline-none"
             >
               {isOpen ? (
                 <X className="h-6 w-6" />
@@ -94,14 +94,14 @@ const Navbar = () => {
                 key={item.name}
                 to={item.href}
                 className={`block py-3 px-4 text-base font-medium rounded-md hover:bg-secondary/50 ${
-                  location.pathname === item.href ? "bg-secondary/80 text-white" : "text-white/80"
+                  location.pathname === item.href ? "bg-secondary/80 text-foreground" : "text-foreground/80"
                 }`}
               >
                 {item.name}
               </Link>
             ))}
             <div className="pt-2 pb-3 px-4">
-              <Button variant="default" className="w-full bg-primary hover:bg-primary/90">
+              <Button variant="default" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                 Register Now
               </Button>
             </div>

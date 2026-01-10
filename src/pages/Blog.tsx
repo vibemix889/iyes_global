@@ -120,8 +120,8 @@ const Blog = () => {
             <button
               className={`px-4 py-2 rounded-full transition-all ${
                 activeCategory === "all"
-                  ? "bg-primary text-white"
-                  : "bg-background/50 text-white/70 hover:text-white"
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-background/50 text-foreground/70 hover:text-foreground"
               }`}
               onClick={() => setActiveCategory("all")}
             >
@@ -133,8 +133,8 @@ const Blog = () => {
                 key={category}
                 className={`px-4 py-2 rounded-full transition-all ${
                   activeCategory === category
-                    ? "bg-primary text-white"
-                    : "bg-background/50 text-white/70 hover:text-white"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-background/50 text-foreground/70 hover:text-foreground"
                 }`}
                 onClick={() => setActiveCategory(category)}
               >
@@ -159,10 +159,10 @@ const Blog = () => {
               </div>
               <div className="p-6 md:p-8 flex flex-col justify-center">
                 <span className="text-accent text-sm font-medium">Featured Post</span>
-                <h2 className="text-2xl md:text-3xl font-anton text-white my-3">
+                <h2 className="text-2xl md:text-3xl font-heading text-foreground my-3">
                   15 Years of IYES: A Journey of Impact and Transformation
                 </h2>
-                <p className="text-white/80 mb-6">
+                <p className="text-muted-foreground mb-6">
                   As we celebrate our 15th anniversary, we look back at the incredible journey of IYES, from its humble beginnings to becoming a continental platform for youth empowerment.
                 </p>
                 <div className="flex items-center justify-between mt-auto">
@@ -175,8 +175,8 @@ const Blog = () => {
                       />
                     </div>
                     <div>
-                      <p className="text-white font-medium">Pastor Brian J. Amoateng</p>
-                      <p className="text-white/60 text-sm">April 10, 2025</p>
+                      <p className="text-foreground font-medium">Pastor Brian J. Amoateng</p>
+                      <p className="text-muted-foreground text-sm">April 10, 2025</p>
                     </div>
                   </div>
                   <Button variant="outline">
@@ -200,8 +200,8 @@ const Blog = () => {
           
           {filteredPosts.length === 0 && (
             <div className="text-center py-16">
-              <h3 className="text-xl text-white mb-2">No articles found</h3>
-              <p className="text-white/70">Try selecting another category</p>
+              <h3 className="text-xl text-foreground mb-2">No articles found</h3>
+              <p className="text-muted-foreground">Try selecting another category</p>
             </div>
           )}
         </div>
@@ -211,17 +211,17 @@ const Blog = () => {
       <section className="py-16 bg-gradient-to-r from-primary/10 to-accent/10">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-anton gradient-text mb-4">
+            <h2 className="text-2xl md:text-3xl font-heading text-foreground mb-4">
               Subscribe to Our Newsletter
             </h2>
-            <p className="text-white/80 mb-6">
+            <p className="text-muted-foreground mb-6">
               Stay updated with the latest articles, event announcements, and opportunities from IYES.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="flex-grow px-4 py-3 bg-secondary/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-white"
+                className="flex-grow px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground placeholder:text-muted-foreground"
               />
               <Button className="bg-primary hover:bg-primary/90 whitespace-nowrap">
                 Subscribe
