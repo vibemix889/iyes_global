@@ -86,7 +86,7 @@ const Index = () => {
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="images/iyes-crowd-flag.jpg"
+            src="images/hero-image.jpeg"
             alt="IYES Conference"
             className="w-full h-full object-cover"
           />
@@ -97,7 +97,7 @@ const Index = () => {
             {/* Iyes date pill */}
             <div className="order-2 md:order-1 animate-fade-in">
               <span className="inline-block font-heading text-white bg-white/10 px-3 py-1 rounded-full text-sm mb-4">
-                MARCH 12-14, 2025
+                MARCH 10-13, 2026
               </span>
               <h1 className="font-heading text-white mb-4 leading-[0.95] text-[clamp(3rem,6.8vw,6.25rem)]">
                 INTERNATIONAL
