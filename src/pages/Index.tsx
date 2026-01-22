@@ -27,7 +27,7 @@ const Index = () => {
       role: "Entrepreneur & Philanthropist",
       organization: "RNAQ Holdings",
       image: "images/speakers/2026/rnaq-2.webp",
-      bio: "Richard Nii Armah Quaye is a Ghanaian entrepreneur and philanthropist. He is the founder and CEO of Nimed Capital Limited, a leading investment banking firm in Accra, Ghana. He is a prominent figure in Ghanaian business and has been in the business for over 20 years.",
+      bio: "Richard Nii Armah Quaye is a prominent Ghanaian entrepreneur and angel investor. He is the President of RNAQ Holdings, the parent company for several of his business interests, including Bills Micro Credit and Quick Angels Limited.",
       featured: true,
       social: {
         twitter: "#",
