@@ -25,7 +25,7 @@ const Index = () => {
       id: 2,
       name: "Richard Nii Armah Quaye",
       role: "Entrepreneur & Philanthropist",
-      organization: "Nimed Capital Limited",
+      organization: "RNAQ Holdings",
       image: "images/speakers/2026/rnaq-2.webp",
       bio: "Richard Nii Armah Quaye is a Ghanaian entrepreneur and philanthropist. He is the founder and CEO of Nimed Capital Limited, a leading investment banking firm in Accra, Ghana. He is a prominent figure in Ghanaian business and has been in the business for over 20 years.",
       featured: true,
@@ -38,7 +38,7 @@ const Index = () => {
       id: 3,
       name: "Stanley Uzochukwu",
       role: "Entrepreneur & Philanthropist",
-      organization: "Nimed Capital Limited",
+      organization: "Delborough Lagos",
       image: "images/speakers/2026/stanley-uzochukwu.webp",
       bio: "Stanley Uzochukwu is a Nigerian business magnet, investor and philanthropist. He was born into the family of Mr/Mrs Bartholomew Uzochukwu at Calabar, Cross River State. He is a native of Nnewi South Local Government Area of Anambra State.",
       featured: true,
@@ -143,7 +143,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <img
-                src="images/happy-youth-2.jpg"
+                src="images/iyes-crowd.webp"
                 alt="About IYES"
                 className="rounded-xl shadow-lg"
               />
@@ -160,7 +160,7 @@ const Index = () => {
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mb-6">
                 <div className="bg-background/70 p-4 rounded-lg border border-border/60">
-                  <span className="text-3xl font-heading text-foreground">11</span>
+                  <span className="text-3xl font-heading text-foreground">10</span>
                   <p className="text-muted-foreground text-sm">Years</p>
                 </div>
                 <div className="bg-background/70 p-4 rounded-lg border border-border/60">
@@ -171,10 +171,7 @@ const Index = () => {
                   <span className="text-3xl font-heading text-foreground">150+</span>
                   <p className="text-muted-foreground text-sm">Speakers</p>
                 </div>
-                <div className="bg-background/70 p-4 rounded-lg border border-border/60">
-                  <span className="text-3xl font-heading text-foreground">5+</span>
-                  <p className="text-muted-foreground text-sm">Countries</p>
-                </div>
+                
               </div>
               <Link to="/about">
                 <Button className="bg-primary hover:bg-primary/90">
@@ -283,7 +280,7 @@ const Index = () => {
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/happy-youth.jpg"
+            src="/images/iyes-gallery/iyes-upsa.jpeg"
             alt="Join IYES"
             className="w-full h-full object-cover"
           />

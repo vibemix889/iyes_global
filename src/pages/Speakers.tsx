@@ -36,10 +36,10 @@ const Speakers = () => {
     {
       id: 3,
       name: "Richard Nii Armah Quaye",
-      role: "Senior Pastor",
-      organization: "Nimed Capital Limited",
+      role: "Entrepreneur & Philanthropist",
+      organization: "RNAQ Holdings",
       image: "images/speakers/2026/rnaq-2.webp",
-      bio: "Richard Nii Armah Quaye is a Ghanaian entrepreneur and philanthropist. He is the founder and CEO of Nimed Capital Limited, a leading investment banking firm in Accra, Ghana. He is a prominent figure in Ghanaian business and has been in the business for over 20 years.",
+      bio: "Richard Nii Armah Quaye is a Ghanaian entrepreneur and philanthropist. He is the founder and CEO of RNAQ Holdings, a leading investment banking firm in Accra, Ghana. He is a prominent figure in Ghanaian business and has been in the business for over 15 years.",
       social: {
         linkedin: "#"
       }
@@ -48,7 +48,7 @@ const Speakers = () => {
       id: 4,
       name: "Stanley Uzochukwu",
       role: "Senior Pastor",
-      organization: "Nimed Capital Limited",
+      organization: "Delborough Lagos",
       image: "images/speakers/2026/stanley-uzochukwu.webp",
       bio: "Stanley Uzochukwu is a Nigerian business magnet, investor and philanthropist. He was born into the family of Mr/Mrs Bartholomew Uzochukwu at Calabar, Cross River State. He is a native of Nnewi South Local Government Area of Anambra State.",
       social: {
