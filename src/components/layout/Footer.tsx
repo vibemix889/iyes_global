@@ -14,7 +14,7 @@ const Footer = () => {
               {/* <h2 className="text-3xl font-heading tracking-wider text-foreground mb-2">IYES</h2> */}
             </Link>
             <p className="text-muted-foreground max-w-md">
-              International Youth Empowerment Summit - Empowering the youth since 2010 with inspirational speakers, transformative workshops, and networking opportunities.
+              International Youth Empowerment Summit - Empowering the youth since 2015 with inspirational speakers, transformative workshops, and networking opportunities.
             </p>
             <div className="flex space-x-4 pt-2">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
@@ -65,11 +65,11 @@ const Footer = () => {
               </li>
               <li className="flex items-start space-x-3">
                 <Phone className="w-5 h-5 text-primary mt-0.5" />
-                <span className="text-muted-foreground">+233 20 123 4567</span>
+                <span className="text-muted-foreground">+233 24 494 6023</span>
               </li>
               <li className="flex items-start space-x-3">
                 <Calendar className="w-5 h-5 text-primary mt-0.5" />
-                <span className="text-muted-foreground">Next Event: August 2025</span>
+                <span className="text-muted-foreground">Next Event: March 10-13, 2026</span>
               </li>
             </ul>
           </div>

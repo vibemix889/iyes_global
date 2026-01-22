@@ -23,46 +23,45 @@ const Speakers = () => {
     },
     {
       id: 2,
-      name: "Appostle Joshua Selman",
+      name: "Nicholas Duncan-Williams",
       role: "Founder & Senior Pastor",
-      organization: "Eternity Network International",
-      image: "images/speakers/joshua-selman.jpeg",
-      bio: "Apostle Joshua Selman Nimmak, born June 25, 1980, is a Nigerian clergyman, chemical engineer, and musician. He is the founder and senior pastor of Eternity Network International (ENI), also known as Koinonia Global, and is a prominent figure in Nigerian gospel ministry.",
+      organization: "Action Chapel International",
+      image: "images/speakers/2026/duncan-williams.webp",
+      bio: "Nicholas Duncan-Williams is a Ghanaian charismatic pastor and Presiding Archbishop and General Overseer of the Action Chapel International (ACI) ministry, headquartered in Accra,. He is a prominent figure in Ghanaian gospel ministry and has been in the ministry for over 30 years.",
       social: {
         twitter: "#",
-        linkedin: "#",
-        website: "#"
+        linkedin: "#"
       }
     },
     {
       id: 3,
-      name: "Dr. Frank Ofosu Appiah",
+      name: "Richard Nii Armah Quaye",
       role: "Senior Pastor",
-      organization: "All Nations Church",
-      image: "images/speakers/dr-frank-ofosu.png",
-      bio: "Dr. Frank Ofosu-Appiah is an internationally recognized life coach and leadership architect. He is a respected speaker and author on issues related to leadership development and living a life of excellence. He has personally mentored, coached and acted as a consultant for a wide array of leaders in churches, businesses and government.",
+      organization: "Nimed Capital Limited",
+      image: "images/speakers/2026/rnaq-2.webp",
+      bio: "Richard Nii Armah Quaye is a Ghanaian entrepreneur and philanthropist. He is the founder and CEO of Nimed Capital Limited, a leading investment banking firm in Accra, Ghana. He is a prominent figure in Ghanaian business and has been in the business for over 20 years.",
       social: {
         linkedin: "#"
       }
     },
     {
       id: 4,
-      name: "Dr. Paul Enenche",
+      name: "Stanley Uzochukwu",
       role: "Senior Pastor",
-      organization: "Dunamis International Gospel Centre",
-      image: "images/speakers/paul-enenche.jpg",
-      bio: "Paul Eneche founded the Dunamis International Gospel Center in 1996, and he still acts as its head pastor. Pastor Paul Eneche was a physician before being called to form a church. His wife, the medical expert Dr. Becky Eneche, and they had four children together as part of the church's mission.",
+      organization: "Nimed Capital Limited",
+      image: "images/speakers/2026/stanley-uzochukwu.webp",
+      bio: "Stanley Uzochukwu is a Nigerian business magnet, investor and philanthropist. He was born into the family of Mr/Mrs Bartholomew Uzochukwu at Calabar, Cross River State. He is a native of Nnewi South Local Government Area of Anambra State.",
       social: {
         twitter: "#"
       }
     },
     {
       id: 5,
-      name: "Dr. Michael Boadi Nyamekye",
-      role: "Lead Pastor",
-      organization: "Maker's House Chapel",
-      image: "/images/speakers/dr-mike-boadi.jpg",
-      bio: "Dr. Michael Boadi Nyamekye is a college professor and lead pastor at Maker's House Chapel (TMH). He holds a Ph.D. in Marketing from the University of Ghana Business School. He is also a preacher, business consultant, and the founder of BN Michael Ministries. He has a passion for marketing and its application in various sectors",
+      name: "Wode Maya",
+      role: "YouTuber",
+      organization: "Wode Maya YouTube Channel",
+      image: "/images/speakers/2026/wode-maya.webp",
+      bio: "Berthold Kobby Winkler Ackon (born March 3, 1994), popularly known as Wode Maya, is a Ghanaian YouTube personality, vlogger, digital media influencer, and aeronautical engineer. His name Wode Maya (Wǒ de Mà yà) translates as 'Oh my God' in the Chinese language.",
       social: {
         twitter: "#",
         website: "#"
@@ -70,11 +69,11 @@ const Speakers = () => {
     },
     {
       id: 6,
-      name: "Prophet Gideon Danso Nyamekye",
-      role: "Founder",
-      organization: "Empowerment Worship Centre",
-      image: "/images/speakers/prophet-gideon-danso.jpeg",
-      bio: "Gideon Danso is a Prophet, Pastor, Bible Teacher, an internationally acclaimed conference speaker, Ministerial and Business Visionary, and Mentor. He is the founder and Global Lead Pastor of Empowerment Worship Centre, Accra-Ghana.",
+      name: "Dr Frank Ofosu Appiah",
+      role: "Life Coach & Leadership Architect",
+      organization: "All Nations Church",
+      image: "/images/speakers/2026/dr-frank-ofosu.webp",
+      bio: "Dr. Frank Ofosu-Appiah is an internationally recognized life coach and leadership architect. He is a respected speaker and author on issues related to leadership development and living a life of excellence. He has personally mentored, coached and acted as a consultant for a wide array of leaders in churches, businesses and government.",
       social: {
         linkedin: "#",
         website: "#"
@@ -82,27 +81,27 @@ const Speakers = () => {
     },
     {
       id: 7,
-      name: "Abena Brigidi",
+      name: "Mrs beatrice Jones Mensah",
       role: "CEO",
-      organization: "Nimed Capital Limited",
-      image: "/images/speakers/abena-brigidi.png",
-      bio: "Brigidi (Mrs.) is a Ghanaian investment analyst author and speaker. She is a certified financial analyst and a thoroughly bred banker with over a decade in the financial Industry. She is the founding Partner and the Chief Executive Officer of Nimed Capital Limited, a leading investment banking firm in Accra, Ghana.",
+      organization: "Mercylife Church",
+      image: "/images/speakers/2026/mrs-jones.webp",
+      bio: "Mrs. Beatrice Jones Mensah Tayui, the CEO Of Cybele Energy limited has advised young women to back whatever they do up with substance and make sure to stay knowledgeable.",
       social: {
         twitter: "#",
         linkedin: "#"
       }
     },
-    {
-      id: 8,
-      name: "Dr. Kwadwo Boateng Bempah",
-      role: "Founder & President",
-      organization: "Holy Hill Chapel",
-      image: "images/speakers/dr-kwadwo-bempah.jpg",
-      bio: "Dr. Kwadwo Boateng Bempah is a Ghanaian multi-gifted international preacher and teacher, a conference speaker and book author; A man associated with supernatural dimension of signs and wonders. He is the Senior Pastor of Holy Hill Chapel Assemblies of God",
-      social: {
-        linkedin: "#"
-      }
-    },
+    // {
+    //   id: 8,
+    //   name: "Dr. Kwadwo Boateng Bempah",
+    //   role: "Founder & President",
+    //   organization: "Holy Hill Chapel",
+    //   image: "images/speakers/dr-kwadwo-bempah.jpg",
+    //   bio: "Dr. Kwadwo Boateng Bempah is a Ghanaian multi-gifted international preacher and teacher, a conference speaker and book author; A man associated with supernatural dimension of signs and wonders. He is the Senior Pastor of Holy Hill Chapel Assemblies of God",
+    //   social: {
+    //     linkedin: "#"
+    //   }
+    // },
     {
       id: 9,
       name: "Daniel Amoateng",
@@ -217,16 +216,16 @@ const Speakers = () => {
                 image: "/images/speakers/Mensa_Otabil.jpg"
               },
               {
-                name: "Strive Masiyiwa",
-                role: "Entrepreneur & Philanthropist",
-                year: "2018",
-                image: "/images/speakers/strive_masiyiwa.png"
+                name: "Dr. Paul Enenche",
+                role: "Senior Pastor",
+                year: "2025",
+                image: "/images/speakers/paul-enenche.jpg"
               },
               {
-                name: "Bishop T.D. Jakes",
+                name: "Appostle Joshua Selman",
                 role: "Global Faith Leader",
-                year: "2016",
-                image: "images/speakers/TD_Jakes.jpg"
+                year: "2025",
+                image: "images/speakers/joshua-selman.jpeg"
               },
               {
                 name: "Sarkodie",

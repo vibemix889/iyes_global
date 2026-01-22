@@ -10,7 +10,7 @@ interface TimeLeft {
 
 const CountdownTimer = () => {
   // Set this to your next event date
-  const targetDate = new Date("August 15, 2025 09:00:00").getTime();
+  const targetDate = new Date("March 10, 2026 09:00:00").getTime();
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,

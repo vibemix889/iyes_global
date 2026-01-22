@@ -10,11 +10,11 @@ const Index = () => {
   const featuredSpeakers: Speaker[] = [
     {
       id: 1,
-      name: "Appostle Joshua Selman",
+      name: "Nicholas Duncan-Williams",
       role: "Founder & Senior Pastor",
-      organization: "Eternity Network International",
-      image: "images/speakers/joshua-selman.jpeg",
-      bio: "Apostle Joshua Selman Nimmak, born June 25, 1980, is a Nigerian clergyman, chemical engineer, and musician. He is the founder and senior pastor of Eternity Network International (ENI), also known as Koinonia Global, and is a prominent figure in Nigerian gospel ministry.",
+      organization: "Action Chapel International",
+      image: "images/speakers/2026/duncan-williams.webp",
+      bio: "Nicholas Duncan-Williams is a Ghanaian charismatic pastor and Presiding Archbishop and General Overseer of the Action Chapel International (ACI) ministry, headquartered in Accra,. He is a prominent figure in Ghanaian gospel ministry and has been in the ministry for over 30 years.",
       featured: true,
       social: {
         twitter: "#",
@@ -23,25 +23,27 @@ const Index = () => {
     },
     {
       id: 2,
-      name: "Dr. Frank Ofosu Appiah",
-      role: "Senior Pastor",
-      organization: "All Nations Church",
-      image: "images/speakers/dr-frank-ofosu.png",
-      bio: "Dr. Frank Ofosu-Appiah is an internationally recognized life coach and leadership architect. He is a respected speaker and author on issues related to leadership development and living a life of excellence. He has personally mentored, coached and acted as a consultant for a wide array of leaders in churches, businesses and government.",
+      name: "Richard Nii Armah Quaye",
+      role: "Entrepreneur & Philanthropist",
+      organization: "Nimed Capital Limited",
+      image: "images/speakers/2026/rnaq-2.webp",
+      bio: "Richard Nii Armah Quaye is a Ghanaian entrepreneur and philanthropist. He is the founder and CEO of Nimed Capital Limited, a leading investment banking firm in Accra, Ghana. He is a prominent figure in Ghanaian business and has been in the business for over 20 years.",
+      featured: true,
       social: {
         twitter: "#",
-        linkedin: "#",
-        website: "#"
+        linkedin: "#"
       }
     },
     {
       id: 3,
-      name: "Dr. Paul Enenche",
-      role: "Senior Pastor",
-      organization: "Dunamis International Gospel Centre",
-      image: "images/speakers/paul-enenche.jpg",
-      bio: "Paul Eneche founded the Dunamis International Gospel Center in 1996, and he still acts as its head pastor. Pastor Paul Eneche was a physician before being called to form a church. His wife, the medical expert Dr. Becky Eneche, and they had four children together as part of the church's mission.",
+      name: "Stanley Uzochukwu",
+      role: "Entrepreneur & Philanthropist",
+      organization: "Nimed Capital Limited",
+      image: "images/speakers/2026/stanley-uzochukwu.webp",
+      bio: "Stanley Uzochukwu is a Nigerian business magnet, investor and philanthropist. He was born into the family of Mr/Mrs Bartholomew Uzochukwu at Calabar, Cross River State. He is a native of Nnewi South Local Government Area of Anambra State.",
+      featured: true,
       social: {
+        twitter: "#",
         linkedin: "#"
       }
     }
@@ -281,7 +283,7 @@ const Index = () => {
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://source.unsplash.com/random/1920x1080?audience,conference"
+            src="/images/happy-youth.jpg"
             alt="Join IYES"
             className="w-full h-full object-cover"
           />
@@ -290,7 +292,7 @@ const Index = () => {
         <div className="container mx-auto px-4 relative z-10 text-center">
           <div className="max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-heading text-white mb-6">
-              Be Part of IYES 2025
+              Be Part of IYES 2026
             </h2>
             <p className="text-white/85 text-lg mb-8">
               Don't miss this opportunity to connect, learn, and grow with fellow young leaders from around the world.

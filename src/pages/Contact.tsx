@@ -41,20 +41,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-foreground font-medium mb-1">Call Us</h3>
-                    <p className="text-muted-foreground">+233 20 123 4567</p>
-                    <p className="text-muted-foreground">+233 30 987 6543</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mr-4">
-                    <MapPin className="text-primary w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-foreground font-medium mb-1">Visit Us</h3>
-                    <p className="text-muted-foreground">IYES Headquarters</p>
-                    <p className="text-muted-foreground">123 Independence Avenue</p>
-                    <p className="text-muted-foreground">Accra, Ghana</p>
+                    <p className="text-muted-foreground">+233 24 494 6023</p>
                   </div>
                 </div>
               </div>
@@ -106,7 +93,7 @@ const Contact = () => {
             {[
               {
                 question: "When is the next IYES event?",
-                answer: "The next IYES event is scheduled for August 15-17, 2025. Registration is already open on our website."
+                answer: "The next IYES event is scheduled for March 10-13, 2026. Registration is already open on our website."
               },
               {
                 question: "How can I register for IYES?",
@@ -148,11 +135,15 @@ const Contact = () => {
           </div>
           
           <div className="h-80 md:h-96 w-full bg-secondary/50 rounded-xl overflow-hidden">
-            <div className="w-full h-full flex items-center justify-center">
-              <div className="text-muted-foreground/80">
-                Map Placeholder
-              </div>
-            </div>
+            <iframe
+              title="IYES location map"
+              className="w-full h-full"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.348142229669!2d-0.16529729999999998!3d5.6626902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9dd431446cc7%3A0xed38ec74f38910e8!2sOhene%20Konadu%20Auditorium%20-%20UPSA!5e0!3m2!1sen!2sgh!4v1769037203324!5m2!1sen!2sgh"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </div>
       </section>
