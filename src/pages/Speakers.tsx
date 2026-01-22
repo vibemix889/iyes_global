@@ -81,9 +81,9 @@ const Speakers = () => {
     },
     {
       id: 7,
-      name: "Mrs beatrice Jones Mensah",
+      name: "Mrs Beatrice Jones-Mensah",
       role: "CEO",
-      organization: "Mercylife Church",
+      organization: "Cybele Energy limited",
       image: "/images/speakers/2026/mrs-jones.webp",
       bio: "Mrs. Beatrice Jones Mensah Tayui, the CEO Of Cybele Energy limited has advised young women to back whatever they do up with substance and make sure to stay knowledgeable.",
       social: {
