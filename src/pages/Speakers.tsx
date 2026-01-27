@@ -128,54 +128,6 @@ const Speakers = () => {
         subtitle="Meet the visionaries, leaders, and change-makers who share their wisdom at IYES"
       />
       
-      {/* Filters */}
-      <section className="py-8 bg-secondary/50">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex flex-wrap gap-3">
-              <div>
-                <label htmlFor="yearFilter" className="block text-foreground text-sm mb-1">
-                  Filter by Year
-                </label>
-                <select
-                  id="yearFilter"
-                  value={filterYear}
-                  onChange={(e) => setFilterYear(e.target.value)}
-                  className="bg-background border border-input rounded px-3 py-2 text-foreground"
-                >
-                  <option value="all">All Years</option>
-                  {years.map((year) => (
-                    <option key={year} value={year}>{year}</option>
-                  ))}
-                </select>
-              </div>
-              
-              <div>
-                <label htmlFor="categoryFilter" className="block text-foreground text-sm mb-1">
-                  Filter by Category
-                </label>
-                <select
-                  id="categoryFilter"
-                  value={filterCategory}
-                  onChange={(e) => setFilterCategory(e.target.value)}
-                  className="bg-background border border-input rounded px-3 py-2 text-foreground"
-                >
-                  <option value="all">All Categories</option>
-                  {categories.map((category) => (
-                    <option key={category} value={category}>{category}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            
-            <div className="w-full md:w-auto">
-              <Button variant="outline" className="w-full md:w-auto">
-                Submit to Speak
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
       
       {/* Speakers Grid */}
       <section className="section-padding">
@@ -248,21 +200,6 @@ const Speakers = () => {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-      
-      {/* CTA */}
-      <section className="section-padding bg-secondary/50">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
-          <h2 className="text-3xl font-heading text-foreground mb-6">
-            Interested in Speaking at IYES?
-          </h2>
-          <p className="text-muted-foreground mb-8">
-            We're always looking for passionate, experienced speakers who can inspire and empower the next generation of leaders. If you have expertise to share, we'd love to hear from you.
-          </p>
-          <Button className="bg-primary hover:bg-primary/90">
-            Submit Your Proposal
-          </Button>
         </div>
       </section>
     </Layout>

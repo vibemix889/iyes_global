@@ -80,7 +80,7 @@ const Footer = () => {
           <div className="mt-4 md:mt-0">
             <ul className="flex space-x-6 text-sm text-muted-foreground/80">
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">VibeMix Media</a>
+                <a href="#" className="hover:text-foreground transition-colors">Stackwave Digital</a>
               </li>
             </ul>
           </div>

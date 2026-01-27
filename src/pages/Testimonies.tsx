@@ -14,11 +14,87 @@ interface VideoTestimonial {
 
 const Testimonies = () => {
   const [videoOpen, setVideoOpen] = useState(false);
-  const [currentVideo, setCurrentVideo] = useState<string | null>(null);
+  const [currentVideoSrc, setCurrentVideoSrc] = useState<string | null>(null);
+
+  const parseTimestampToSeconds = (value: string | null) => {
+    if (!value) return 0;
+    const trimmed = value.trim();
+    if (!trimmed) return 0;
+
+    if (/^\d+$/.test(trimmed)) {
+      return Number(trimmed);
+    }
+
+    const match = /(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?/i.exec(trimmed);
+    if (!match) return 0;
+
+    const hours = Number(match[1] || 0);
+    const minutes = Number(match[2] || 0);
+    const seconds = Number(match[3] || 0);
+    return hours * 3600 + minutes * 60 + seconds;
+  };
+
+  const getStartSeconds = (params: URLSearchParams) =>
+    parseTimestampToSeconds(
+      params.get("t") || params.get("start") || params.get("time_continue")
+    );
+
+  const extractFromUrl = (url: URL) => {
+    const host = url.hostname.replace(/^www\./, "");
+    const pathParts = url.pathname.split("/").filter(Boolean);
+    let videoId = "";
+
+    if (host === "youtu.be" && pathParts[0]) {
+      videoId = pathParts[0];
+    } else if (pathParts[0] === "embed" && pathParts[1]) {
+      videoId = pathParts[1];
+    } else if (pathParts[0] === "shorts" && pathParts[1]) {
+      videoId = pathParts[1];
+    } else {
+      videoId = url.searchParams.get("v") || "";
+    }
+
+    return { videoId, startSeconds: getStartSeconds(url.searchParams) };
+  };
+
+  const extractFromRaw = (raw: string) => {
+    const parts = raw.split(/[?&]/);
+    const base = parts.shift() || "";
+    const query = parts.length > 0 ? parts.join("&") : "";
+    const params = query ? new URLSearchParams(query) : null;
+
+    return {
+      videoId: base,
+      startSeconds: params ? getStartSeconds(params) : 0
+    };
+  };
+
+  const getYoutubeEmbedSrc = (input: string) => {
+    const raw = input.trim();
+    if (!raw) return null;
+
+    const { videoId, startSeconds } = /^https?:\/\//i.test(raw)
+      ? (() => {
+          try {
+            return extractFromUrl(new URL(raw));
+          } catch {
+            return extractFromRaw(raw);
+          }
+        })()
+      : extractFromRaw(raw);
+
+    const idMatch = /[a-zA-Z0-9_-]{11}/.exec(videoId);
+    if (!idMatch) return null;
+
+    const startParam = startSeconds > 0 ? `&start=${startSeconds}` : "";
+    return `https://www.youtube.com/embed/${idMatch[0]}?autoplay=1${startParam}`;
+  };
 
   // Handle opening a video
   const openVideo = (youtubeId: string) => {
-    setCurrentVideo(youtubeId);
+    const embedSrc = getYoutubeEmbedSrc(youtubeId);
+    if (!embedSrc) return;
+    setCurrentVideoSrc(embedSrc);
     setVideoOpen(true);
   };
 
@@ -92,24 +168,25 @@ const Testimonies = () => {
   const videoTestimonials: VideoTestimonial[] = [
     {
       id: 1,
-      name: "Victor Osei",
-      role: "Tech Entrepreneur",
-      image: "/images/male-singer.jpg",
-      youtubeId: "AoCQfszF3qI"
+      name: "Karen Naa Oyoe Quartey",
+      role: "Journalist: Weizor TV",
+      image: "/images/karen.png",
+      youtubeId: "https://www.youtube.com/watch?v=yM6uZGMNp8o&t=13112s"
     },
     {
       id: 2,
-      name: "Nana Akua",
-      role: "Media Personality",
-      image: "/images/woman-singer.jpg",
-      youtubeId: "AoCQfszF3qI"
+      name: "Leticia: Tish Foods and Cereals",
+      role: "Food Entrepreneur",
+      image: "/images/leticia.JPG",
+      youtubeId:
+        "https://youtu.be/yM6uZGMNp8o?t=12541"
     },
     {
       id: 3,
-      name: "Michael Addo",
-      role: "Corporate Executive",
-      image: "/images/joe-mettle.jpg",
-      youtubeId: "Ao4F_yTwh_M"
+      name: "General Lawrence Boakye",
+      role: "Student",
+      image: "/images/lawrence.JPG",
+      youtubeId: "https://youtu.be/yM6uZGMNp8o?t=12740"
     }
   ];
 
@@ -181,9 +258,11 @@ const Testimonies = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {videoTestimonials.map((item) => (
               <div key={item.id} className="bg-secondary/50 rounded-xl overflow-hidden">
-                <div
-                  className="aspect-video bg-background/50 flex items-center justify-center relative group cursor-pointer"
+                <button
+                  type="button"
+                  className="aspect-video bg-background/50 flex items-center justify-center relative group cursor-pointer w-full"
                   onClick={() => openVideo(item.youtubeId)}
+                  aria-label={`Play ${item.name} video`}
                 >
                   <div className="absolute inset-0">
                     <img
@@ -198,7 +277,7 @@ const Testimonies = () => {
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white"><polygon points="5 3 19 12 5 21 5 3" /></svg>
                     </div>
                   </div>
-                </div>
+                </button>
                 <div className="p-4 text-center">
                   <h3 className="font-heading text-foreground">{item.name}</h3>
                   <p className="text-muted-foreground text-sm">{item.role}</p>
@@ -212,14 +291,13 @@ const Testimonies = () => {
       {/* Video Dialog */}
       <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
         <DialogContent className="sm:max-w-[900px] p-0 bg-black border-none overflow-hidden">
-          {currentVideo && (
+          {currentVideoSrc && (
             <div className="aspect-video w-full">
               <iframe
                 width="100%"
                 height="100%"
-                src={`https://www.youtube.com/embed/${currentVideo}?autoplay=1`}
+                src={currentVideoSrc}
                 title="YouTube video player"
-                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
@@ -227,30 +305,6 @@ const Testimonies = () => {
           )}
         </DialogContent>
       </Dialog>
-
-      {/* Organizations */}
-      <section className="section-padding">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
-              Partner Organizations
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Organizations that have collaborated with us and support our vision
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-              <div key={item} className="flex items-center justify-center p-6 bg-secondary/30 rounded-lg hover:bg-secondary/50 transition-all duration-300 h-24">
-                <div className="text-muted-foreground/80 font-medium text-center">
-                  Partner Logo
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Share Your Story */}
       <section className="section-padding bg-secondary/50">

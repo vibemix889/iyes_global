@@ -112,9 +112,11 @@ const Index = () => {
                 Join us for three days of inspiration, networking, and transformation with world-class speakers and youth leaders.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                  Register Now
-                </Button>
+             <Link to="/contact">
+                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                    Register Now
+                  </Button>
+             </Link>
                 <Button
                   variant="outline"
                   className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
@@ -171,7 +173,7 @@ const Index = () => {
                   <span className="text-3xl font-heading text-foreground">150+</span>
                   <p className="text-muted-foreground text-sm">Speakers</p>
                 </div>
-                
+
               </div>
               <Link to="/about">
                 <Button className="bg-primary hover:bg-primary/90">
@@ -194,13 +196,13 @@ const Index = () => {
               Learn from world-class leaders, entrepreneurs, and changemakers who are shaping the future
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredSpeakers.map((speaker) => (
               <SpeakerCard key={speaker.id} speaker={speaker} featured={speaker.featured} />
             ))}
           </div>
-          
+
           <div className="text-center mt-10">
             <Link to="/speakers">
               <Button variant="outline" className="group">
@@ -258,13 +260,13 @@ const Index = () => {
               Stay updated with insights, stories, and announcements from the IYES community
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredPosts.map((post) => (
               <BlogPostCard key={post.id} post={post} />
             ))}
           </div>
-          
+
           <div className="text-center mt-10">
             <Link to="/blog">
               <Button variant="outline" className="group">
@@ -295,9 +297,11 @@ const Index = () => {
               Don't miss this opportunity to connect, learn, and grow with fellow young leaders from around the world.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                Register Now
-              </Button>
+              <Link to="/contact">
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                  Register Now
+                </Button>
+              </Link>
               <Button
                 variant="outline"
                 className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
