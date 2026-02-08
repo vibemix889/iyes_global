@@ -1,110 +1,27 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import PageHeader from "@/components/ui/PageHeader";
-import BlogPostCard, { BlogPost } from "@/components/home/BlogPostCard";
+import BlogPostCard from "@/components/home/BlogPostCard";
 import { Button } from "@/components/ui/button";
+import { getAllBlogPosts, getBlogCategories } from "@/lib/blog";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState<string>("all");
   
-  const categories = ["Event Recaps", "Success Stories", "Leadership", "Faith", "Upcoming Events"];
-  
-  const blogPosts: BlogPost[] = [
-    {
-      id: 1,
-      title: "5 Key Takeaways from IYES 2025",
-      excerpt: "The most impactful moments and lessons from this year's summit that continue to inspire youth leaders.",
-      date: "2025-03-20",
-      author: "James Mensa",
-      image: "/images/iyes-crowd-flag.jpg",
-      category: "Event Recaps",
-      slug: "key-takeaways-iyes-2025"
-    },
-    {
-      id: 2,
-      title: "How IYES Changed My Entrepreneurial Journey",
-      excerpt: "One attendee's story of transformation and growth after participating in IYES workshops.",
-      date: "2025-03-15",
-      author: "Sarah Addo",
-      image: "/images/blog-images/pb-seated.jpeg",
-      category: "Success Stories",
-      slug: "how-iyes-changed-my-entrepreneurial-journey"
-    },
-    {
-      id: 3,
-      title: "Preparing for IYES 2026: What to Expect",
-      excerpt: "An early look at the themes, speakers, and opportunities coming to next year's summit.",
-      date: "2025-04-05",
-      author: "Daniel Kwame",
-      image: "/images/blog-images/iyes-usa.jpeg",
-      category: "Upcoming Events",
-      slug: "preparing-for-iyes-2026"
-    },
-    {
-      id: 4,
-      title: "7 Leadership Lessons from Pastor Brian Jones Amoateng",
-      excerpt: "Practical wisdom from the founder of IYES that can transform your approach to leadership.",
-      date: "2025-02-28",
-      author: "Michael Tetteh",
-      image: "/images/pb-in-white-with-flag.jpeg",
-      category: "Leadership",
-      slug: "leadership-lessons-pastor-brian"
-    },
-    {
-      id: 5,
-      title: "Faith and Purpose: Finding Your Path in Life",
-      excerpt: "How spiritual foundations can guide your journey to discovering and fulfilling your purpose.",
-      date: "2025-02-15",
-      author: "Grace Afolabi",
-      image: "/images/eastwood.jpg",
-      category: "Faith",
-      slug: "faith-and-purpose"
-    },
-    {
-      id: 6,
-      title: "IYES Partner Organizations Making a Difference",
-      excerpt: "Highlighting the impact of organizations that have collaborated with IYES over the years.",
-      date: "2025-01-20",
-      author: "Joshua Mensah",
-      image: "/images/sam-george.jpg",
-      category: "Event Recaps",
-      slug: "partner-organizations-making-difference"
-    },
-    {
-      id: 7,
-      title: "From Attendee to Speaker: My IYES Journey",
-      excerpt: "The inspiring story of how one young person went from sitting in the audience to standing on the stage.",
-      date: "2025-01-10",
-      author: "Amara Koffi",
-      image: "images/male-singer.jpg",
-      category: "Success Stories",
-      slug: "from-attendee-to-speaker"
-    },
-    {
-      id: 8,
-      title: "Balancing Ambition and Faith in Your Career",
-      excerpt: "How to pursue excellence in your professional life while staying grounded in your spiritual values.",
-      date: "2024-12-15",
-      author: "David Asante",
-      image: "/images/joe-mettle.jpg",
-      category: "Faith",
-      slug: "balancing-ambition-and-faith"
-    },
-    {
-      id: 9,
-      title: "Youth Entrepreneurship: Challenges and Opportunities in Africa",
-      excerpt: "Insights from IYES panels on navigating the entrepreneurial landscape as a young African.",
-      date: "2024-12-05",
-      author: "Fatima Diallo",
-      image: "/images/happy-youth.jpg",
-      category: "Leadership",
-      slug: "youth-entrepreneurship-africa"
-    }
-  ];
+  const blogPosts = useMemo(() => getAllBlogPosts(), []);
+  const categories = useMemo(() => getBlogCategories(), []);
+  const featuredPost = useMemo(
+    () => blogPosts.find((post) => post.frontmatter.featured),
+    [blogPosts]
+  );
 
-  const filteredPosts = activeCategory === "all" 
-    ? blogPosts 
-    : blogPosts.filter(post => post.category === activeCategory);
+  const filteredPosts =
+    activeCategory === "all"
+      ? blogPosts
+      : blogPosts.filter(
+          (post) => post.frontmatter.category === activeCategory
+        );
 
   return (
     <Layout>
@@ -146,41 +63,52 @@ const Blog = () => {
       </section>
       
       {/* Featured Post */}
-      {activeCategory === "all" && (
+      {activeCategory === "all" && featuredPost && (
         <section className="py-12">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-secondary/30 rounded-xl overflow-hidden">
               <div className="aspect-video md:aspect-auto overflow-hidden">
                 <img 
-                  src="/images/blog-images/iyes-usa.jpeg"
-                  alt="Featured Post"
+                  src={featuredPost.frontmatter.image}
+                  alt={featuredPost.frontmatter.title}
                   className="w-full h-[350px] object-cover object-center"
                 />
               </div>
               <div className="p-6 md:p-8 flex flex-col justify-center">
                 <span className="text-accent text-sm font-medium">Featured Post</span>
                 <h2 className="text-2xl md:text-3xl font-heading text-foreground my-3">
-                  15 Years of IYES: A Journey of Impact and Transformation
+                  {featuredPost.frontmatter.title}
                 </h2>
                 <p className="text-muted-foreground mb-6">
-                  As we celebrate our 15th anniversary, we look back at the incredible journey of IYES, from its humble beginnings to becoming a continental platform for youth empowerment.
+                  {featuredPost.frontmatter.excerpt}
                 </p>
                 <div className="flex items-center justify-between mt-auto">
                   <div className="flex items-center">
                     <div className="w-10 h-10 rounded-full overflow-hidden mr-3">
                       <img 
-                        src="/images/profile-empty.png"
-                        alt="Pastor Brian"
+                        src={featuredPost.frontmatter.authorImage}
+                        alt={featuredPost.frontmatter.author}
                         className="w-full h-full object-cover"
                       />
                     </div>
                     <div>
-                      <p className="text-foreground font-medium">Pastor Brian J. Amoateng</p>
-                      <p className="text-muted-foreground text-sm">April 10, 2025</p>
+                      <p className="text-foreground font-medium">
+                        {featuredPost.frontmatter.author}
+                      </p>
+                      <p className="text-muted-foreground text-sm">
+                        {new Date(featuredPost.frontmatter.date).toLocaleDateString(
+                          "en-US",
+                          {
+                            month: "long",
+                            day: "numeric",
+                            year: "numeric",
+                          }
+                        )}
+                      </p>
                     </div>
                   </div>
-                  <Button variant="outline">
-                    Read Article
+                  <Button variant="outline" asChild>
+                    <Link to={`/blog/${featuredPost.slug}`}>Read Article</Link>
                   </Button>
                 </div>
               </div>
@@ -194,7 +122,7 @@ const Blog = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.map((post) => (
-              <BlogPostCard key={post.id} post={post} />
+              <BlogPostCard key={post.slug} post={post} />
             ))}
           </div>
           

@@ -2,14 +2,29 @@ import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import CountdownTimer from "@/components/home/CountdownTimer";
 import SpeakerCard, { Speaker } from "@/components/home/SpeakerCard";
-import BlogPostCard, { BlogPost } from "@/components/home/BlogPostCard";
+import { useMemo } from "react";
+import BlogPostCard from "@/components/home/BlogPostCard";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { getAllBlogPosts } from "@/lib/blog";
 
 const Index = () => {
   const featuredSpeakers: Speaker[] = [
     {
       id: 1,
+      name: "Pastor Brian Jones Amoateng",
+      role: "Founder & Senior Pastor",
+      organization: "Mercylife Church",
+      image: "/images/speakers/Ps-Brian-Amoateng.jpeg",
+      bio: "Pastor Brian Amoateng is the founder of Brian Jones Ministries,UK.,Pastor, Human Resource Consultant, Author, Philanthropist, Life Coach and known to many as The Revivalist",
+      featured: true,
+      social: {
+        twitter: "#",
+        linkedin: "#"
+      }
+    },
+    {
+      id: 2,
       name: "Nicholas Duncan-Williams",
       role: "Founder & Senior Pastor",
       organization: "Action Chapel International",
@@ -22,65 +37,23 @@ const Index = () => {
       }
     },
     {
-      id: 2,
-      name: "Richard Nii Armah Quaye",
-      role: "Entrepreneur & Philanthropist",
-      organization: "RNAQ Holdings",
-      image: "images/speakers/2026/rnaq-2.webp",
-      bio: "Richard Nii Armah Quaye is a prominent Ghanaian entrepreneur and angel investor. He is the President of RNAQ Holdings, the parent company for several of his business interests, including Bills Micro Credit and Quick Angels Limited.",
+      id: 3,
+      name: "Pastor Jerry Uchechukwu Eze",
+      role: "Founder & Senior Pastor",
+      organization: "Streams of Joy International",
+      image: "images/speakers/2026/pastor-jerry-eze.webp",
+      bio: "Pastor Jerry Uchechukwu Eze is a renowned Nigerian Pentecostal pastor, author, and founder of Streams of Joy International. He is best known as the convener of the New Season Prophetic Prayers and Declarations (NSPPD), a popular global daily online prayer platform with the slogan 'What God cannot do, does not exist'",
       featured: true,
       social: {
-        twitter: "#",
         linkedin: "#"
       }
     },
-    {
-      id: 3,
-      name: "Stanley Uzochukwu",
-      role: "Entrepreneur & Philanthropist",
-      organization: "Delborough Lagos",
-      image: "images/speakers/2026/stanley-uzochukwu.webp",
-      bio: "Stanley Uzochukwu is a Nigerian business magnet, investor and philanthropist. He was born into the family of Mr/Mrs Bartholomew Uzochukwu at Calabar, Cross River State. He is a native of Nnewi South Local Government Area of Anambra State.",
-      featured: true,
-      social: {
-        twitter: "#",
-        linkedin: "#"
-      }
-    }
   ];
 
-  const featuredPosts: BlogPost[] = [
-    {
-      id: 1,
-      title: "5 Key Takeaways from IYES 2025",
-      excerpt: "The most impactful moments and lessons from this year's summit that continue to inspire youth leaders.",
-      date: "2025-03-20",
-      author: "James Mensa",
-      image: "images/iyes-crowd-flag.jpg",
-      category: "Event Recap",
-      slug: "key-takeaways-iyes-2025"
-    },
-    {
-      id: 2,
-      title: "How IYES Changed My Entrepreneurial Journey",
-      excerpt: "One attendee's story of transformation and growth after participating in IYES workshops.",
-      date: "2025-03-15",
-      author: "Sarah Addo",
-      image: "images/blog-images/pb-seated.jpeg",
-      category: "Success Story",
-      slug: "how-iyes-changed-my-entrepreneurial-journey"
-    },
-    {
-      id: 3,
-      title: "Preparing for IYES 2026: What to Expect",
-      excerpt: "An early look at the themes, speakers, and opportunities coming to next year's summit.",
-      date: "2025-04-05",
-      author: "Daniel Kwame",
-      image: "images/blog-images/iyes-usa.jpeg",
-      category: "Upcoming Events",
-      slug: "preparing-for-iyes-2026"
-    }
-  ];
+  const featuredPosts = useMemo(
+    () => getAllBlogPosts().slice(0, 3),
+    []
+  );
 
   return (
     <Layout>
@@ -113,7 +86,7 @@ const Index = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
              <Link to="/contact">
-                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto">
                     Register Now
                   </Button>
              </Link>
@@ -263,7 +236,7 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredPosts.map((post) => (
-              <BlogPostCard key={post.id} post={post} />
+              <BlogPostCard key={post.slug} post={post} />
             ))}
           </div>
 
@@ -274,6 +247,36 @@ const Index = () => {
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Volunteer Section */}
+      <section className="section-padding bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div className="order-2 md:order-1">
+              <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
+                Volunteer with IYES
+              </h2>
+              <p className="text-muted-foreground mb-4">
+                Be part of the team making IYES possible. If you would like to volunteer,
+                reach us on WhatsApp or call.
+              </p>
+              <a
+                href="tel:+233550379597"
+                className="text-foreground font-medium hover:text-primary transition-colors"
+              >
+                WhatsApp & Call: +233 55 037 9597
+              </a>
+            </div>
+            <div className="order-1 md:order-2">
+              <img
+                src="/images/iyes-volunteer.jpg"
+                alt="IYES volunteers"
+                className="w-full rounded-xl shadow-lg object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>

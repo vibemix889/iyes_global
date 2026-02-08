@@ -1,16 +1,6 @@
 
 import { Link } from "react-router-dom";
-
-export interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  date: string;
-  author: string;
-  image: string;
-  category: string;
-  slug: string;
-}
+import type { BlogPost } from "@/lib/blog";
 
 interface BlogPostCardProps {
   post: BlogPost;
@@ -22,8 +12,8 @@ const BlogPostCard = ({ post }: BlogPostCardProps) => {
       <Link to={`/blog/${post.slug}`}>
         <div className="aspect-video overflow-hidden">
           <img 
-            src={post.image} 
-            alt={post.title} 
+            src={post.frontmatter.image} 
+            alt={post.frontmatter.title} 
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
           />
         </div>
@@ -31,26 +21,28 @@ const BlogPostCard = ({ post }: BlogPostCardProps) => {
       <div className="p-5 flex flex-col flex-grow">
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs text-muted-foreground">
-            {new Date(post.date).toLocaleDateString("en-US", {
+            {new Date(post.frontmatter.date).toLocaleDateString("en-US", {
               month: "long",
               day: "numeric",
               year: "numeric",
             })}
           </span>
           <span className="text-xs px-2 py-1 bg-primary/20 text-primary rounded-full">
-            {post.category}
+            {post.frontmatter.category}
           </span>
         </div>
         <Link to={`/blog/${post.slug}`}>
           <h3 className="text-lg md:text-xl font-heading text-foreground hover:text-primary transition-colors duration-200">
-            {post.title}
+            {post.frontmatter.title}
           </h3>
         </Link>
         <p className="text-muted-foreground text-sm mt-2 flex-grow">
-          {post.excerpt}
+          {post.frontmatter.excerpt}
         </p>
         <div className="mt-4 pt-4 border-t border-border/20 flex items-center justify-between">
-          <span className="text-muted-foreground text-xs">By {post.author}</span>
+          <span className="text-muted-foreground text-xs">
+            By {post.frontmatter.author}
+          </span>
           <Link 
             to={`/blog/${post.slug}`}
             className="text-primary hover:text-accent text-sm font-medium transition-colors"

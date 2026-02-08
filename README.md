@@ -42,3 +42,34 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+## How to add a blog post
+
+Blog posts live in `src/content/blog` as `.mdx` files. Each file has frontmatter at the top that controls the title, images, dates, and category. The file name becomes the default URL slug unless you set `slug` in the frontmatter.
+
+1. Create a new file in `src/content/blog`, for example `my-new-post.mdx`.
+2. Add frontmatter like this:
+
+```md
+---
+title: "My Post Title"
+excerpt: "Short summary shown on cards."
+date: "2025-06-01"
+author: "Author Name"
+authorImage: "/images/profile-empty.png"
+image: "/images/iyes-default.jpg"
+category: "Leadership"
+tags:
+  - Leadership
+  - Faith
+featured: false
+slug: "my-post-title"
+---
+```
+
+3. Write your content under the frontmatter using Markdown headings and text.
+4. Save the file and refresh the site. The post will appear on `/blog` and at `/blog/my-post-title`.
+
+Tips:
+- To set a featured post, set `featured: true` on one post.
+- Keep the `date` format as `YYYY-MM-DD` for correct sorting.
+

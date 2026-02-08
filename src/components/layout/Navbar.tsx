@@ -45,7 +45,7 @@ const Navbar = () => {
         <div className="flex h-20 items-center justify-between">
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
-            <img src="images/iyes-logo.PNG" width={50} alt="" />
+              <img src="/images/iyes-logo.PNG" width={50} alt="IYES logo" />
               {/* <span className="text-2xl font-heading text-foreground tracking-wider">IYES</span> */}
             </Link>
           </div>
