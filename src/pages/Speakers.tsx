@@ -35,6 +35,17 @@ const Speakers = () => {
     },
     {
       id: 3,
+      name: "Pastor Jerry Uchechukwu Eze",
+      role: "Founder & Senior Pastor",
+      organization: "Streams of Joy International",
+      image: "images/speakers/2026/pastor-jerry-eze.webp",
+      bio: "Pastor Jerry Uchechukwu Eze is a renowned Nigerian Pentecostal pastor, author, and founder of Streams of Joy International. He is best known as the convener of the New Season Prophetic Prayers and Declarations (NSPPD), a popular global daily online prayer platform with the slogan 'What God cannot do, does not exist'",
+      social: {
+        linkedin: "#"
+      }
+    },
+    {
+      id: 4,
       name: "Richard Nii Armah Quaye",
       role: "Entrepreneur & Philanthropist",
       organization: "RNAQ Holdings",
@@ -45,7 +56,7 @@ const Speakers = () => {
       }
     },
     {
-      id: 4,
+      id: 5,
       name: "Stanley Uzochukwu",
       role: "Senior Pastor",
       organization: "Delborough Lagos",
@@ -56,11 +67,11 @@ const Speakers = () => {
       }
     },
     {
-      id: 5,
+      id: 6,
       name: "Wode Maya",
       role: "YouTuber",
       organization: "Wode Maya YouTube Channel",
-      image: "/images/speakers/2026/wode-maya.webp",
+      image: "/images/speakers/2026/wode-maya.jpg",
       bio: "Berthold Kobby Winkler Ackon (born March 3, 1994), popularly known as Wode Maya, is a Ghanaian YouTube personality, vlogger, digital media influencer, and aeronautical engineer. His name Wode Maya (Wǒ de Mà yà) translates as 'Oh my God' in the Chinese language.",
       social: {
         twitter: "#",
@@ -68,7 +79,7 @@ const Speakers = () => {
       }
     },
     {
-      id: 6,
+      id: 7,
       name: "Dr Frank Ofosu Appiah",
       role: "Life Coach & Leadership Architect",
       organization: "All Nations Church",
@@ -80,7 +91,7 @@ const Speakers = () => {
       }
     },
     {
-      id: 7,
+      id: 8,
       name: "Mrs Beatrice Jones-Mensah",
       role: "CEO",
       organization: "Cybele Energy limited",

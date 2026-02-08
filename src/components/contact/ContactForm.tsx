@@ -21,31 +21,41 @@ const ContactForm = () => {
     }));
   };
   
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+  
+    // Prepare the data for Netlify
+    const form = e.currentTarget;
+    const formDataObj = new FormData(form);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formDataObj as any).toString(),
+      });
+  
       toast({
         title: "Message Sent",
         description: "Thank you for your message. We'll get back to you soon.",
       });
-      
-      // Reset form data
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
+  
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
       });
-      
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
   
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6" data-netlify="true" name="contact">
+      <input type="hidden" name="form-name" value="contact" />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="name" className="block text-foreground text-sm font-medium mb-2">
