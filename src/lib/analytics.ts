@@ -1,19 +1,22 @@
 /**
  * Google Analytics 4 (GA4) integration.
- * Loads gtag asynchronously and tracks page views on SPA route changes.
+ * GA4 snippet runs from index.html for reliable loading. This module sends
+ * page_view on SPA route changes and optional custom events.
  */
 
 const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined;
 
 type GtagWindow = Window & { dataLayer: unknown[]; gtag: (...a: unknown[]) => void };
 
-function isEnabled(): boolean {
-  return Boolean(MEASUREMENT_ID && globalThis.window !== undefined);
+function getGtag(): GtagWindow["gtag"] | undefined {
+  if (globalThis.window === undefined) return undefined;
+  const w = globalThis.window as unknown as GtagWindow;
+  return w.gtag;
 }
 
-/** Load the gtag script and initialize GA4. Call once at app bootstrap. */
+/** Optional: init script from JS if not already in index.html (e.g. when using env-only). */
 export function initAnalytics(): void {
-  if (!MEASUREMENT_ID || globalThis.window === undefined) return;
+  if (getGtag() || !MEASUREMENT_ID || globalThis.window === undefined) return;
 
   const w = globalThis.window as unknown as GtagWindow;
   w.dataLayer = w.dataLayer ?? [];
@@ -27,15 +30,14 @@ export function initAnalytics(): void {
   script.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
   document.head.appendChild(script);
 
-  w.gtag("config", MEASUREMENT_ID, {
-    send_page_view: false, // We send page_view ourselves on route change for accurate SPA tracking
-  });
+  w.gtag("config", MEASUREMENT_ID, { send_page_view: false });
 }
 
-/** Send a page view. Call on initial load and on every client-side route change. */
+/** Send a page view (used on initial load and every SPA route change). */
 export function trackPageView(path: string, title?: string): void {
-  if (!isEnabled()) return;
-  (globalThis.window as unknown as GtagWindow).gtag("event", "page_view", {
+  const gtag = getGtag();
+  if (!gtag) return;
+  gtag("event", "page_view", {
     page_path: path,
     page_title: title ?? document.title,
   });
@@ -46,6 +48,7 @@ export function trackEvent(
   eventName: string,
   params?: Record<string, string | number | boolean>
 ): void {
-  if (!isEnabled()) return;
-  (globalThis.window as unknown as GtagWindow).gtag("event", eventName, params);
+  const gtag = getGtag();
+  if (!gtag) return;
+  gtag("event", eventName, params);
 }
