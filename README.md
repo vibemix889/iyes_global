@@ -1,75 +1,78 @@
-# IYES
+# IYES Global
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+IYES Global is an event and conference platform designed to showcase speakers, galleries, testimonies, and insightful blog content.
 
-Follow these steps:
+## Getting Started
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+To get the project up and running locally, ensure you have [Node.js](https://nodejs.org/) installed.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Installation
 
-# Step 3: Install the necessary dependencies.
-npm i
+1.  **Clone the repository:**
+    ```sh
+    git clone <YOUR_GIT_URL>
+    cd iyes_global
+    ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+2.  **Install dependencies:**
+    ```sh
+    npm install
+    ```
 
-**Edit a file directly in GitHub**
+3.  **Start the development server:**
+    ```sh
+    npm run dev
+    ```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The application will be available at `http://localhost:8080` (or similar port).
 
-**Use GitHub Codespaces**
+## Project Structure
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+This project is built using:
+-   **[Vite](https://vitejs.dev/)** - Fast frontend build tool.
+-   **[React](https://react.dev/)** - UI library.
+-   **[TypeScript](https://www.typescriptlang.org/)** - For type safety.
+-   **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework.
+-   **[shadcn/ui](https://ui.shadcn.com/)** - Reusable components built with Radix UI and Tailwind CSS.
+-   **[React Router](https://reactrouter.com/)** - Client-side routing.
+-   **[TanStack Query](https://tanstack.com/query/latest)** - Data fetching and state management.
 
-## What technologies are used for this project?
+### Key Directories
 
-This project is built with:
+-   `src/components`: Reusable UI components.
+-   `src/pages`: Application views/routes (Index, About, Speakers, etc.).
+-   `src/content/blog`: MDX files for blog posts.
+-   `public`: Static assets.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Managing Content
 
-## How to add a blog post
+### Adding a Blog Post
 
-Blog posts live in `src/content/blog` as `.mdx` files. Each file has frontmatter at the top that controls the title, images, dates, and category. The file name becomes the default URL slug unless you set `slug` in the frontmatter.
+Blog posts are located in `src/content/blog` as `.mdx` files.
 
-1. Create a new file in `src/content/blog`, for example `my-new-post.mdx`.
-2. Add frontmatter like this:
+1.  Create a new file in `src/content/blog`, e.g., `my-new-post.mdx`.
+2.  Add the required frontmatter:
 
-```md
----
-title: "My Post Title"
-excerpt: "Short summary shown on cards."
-date: "2025-06-01"
-author: "Author Name"
-authorImage: "/images/profile-empty.png"
-image: "/images/iyes-default.jpg"
-category: "Leadership"
-tags:
-  - Leadership
-  - Faith
-featured: false
-slug: "my-post-title"
----
-```
+    ```md
+    ---
+    title: "My Post Title"
+    excerpt: "Short summary shown on cards."
+    date: "2025-06-01"
+    author: "Author Name"
+    authorImage: "/images/profile-empty.png"
+    image: "/images/iyes-default.jpg"
+    category: "Leadership"
+    tags:
+      - Leadership
+      - Faith
+    featured: false
+    slug: "my-post-title"
+    ---
+    ```
 
-3. Write your content under the frontmatter using Markdown headings and text.
-4. Save the file and refresh the site. The post will appear on `/blog` and at `/blog/my-post-title`.
+3.  Write your content below the frontmatter using Markdown.
+4.  The post will automatically appear on the `/blog` page.
 
-Tips:
-- To set a featured post, set `featured: true` on one post.
-- Keep the `date` format as `YYYY-MM-DD` for correct sorting.
+## Deployment
 
+The project is configured for deployment on platforms like Netlify. See `netlify.toml` for configuration details.
