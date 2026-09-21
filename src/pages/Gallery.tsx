@@ -1,63 +1,26 @@
 import { useState, useEffect, useMemo } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import PageHeader from "@/components/ui/PageHeader";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
-  fetchGalleryManifest,
-  defaultGalleryManifest,
-  galleryFilterKeys,
-  imageUrl,
-  type GalleryManifest,
+  galleryPage,
+  galleryTabs,
+  photosForTab,
+  DEFAULT_VIDEO_THUMBNAIL,
+  ALL_TAB,
+  type GalleryItem,
 } from "@/lib/gallery";
 import { motion, AnimatePresence } from "motion/react";
 
 const Gallery = () => {
-  const [manifest, setManifest] = useState<GalleryManifest | null>(null);
-  const [manifestLoading, setManifestLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<string>("All");
+  const [activeTab, setActiveTab] = useState<string>(ALL_TAB);
   const [videoOpen, setVideoOpen] = useState(false);
   const [currentVideo, setCurrentVideo] = useState<string | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
-  const defaultYoutubeId = "AoCQfszF3qI";
-  const videoBackgrounds = [
-    "/images/eastwood.jpg",
-    "/images/iyes-default.jpg",
-    "/images/sam-george.jpg",
-    "/images/iyes-default.jpg",
-  ];
-  const defaultBackground = "/images/iyes-default.jpg";
-
-  useEffect(() => {
-    let cancelled = false;
-    setManifestLoading(true);
-    fetchGalleryManifest()
-      .then((data) => {
-        if (!cancelled) {
-          setManifest(data ?? defaultGalleryManifest);
-          setActiveTab((prev) => (prev === "All" ? "All" : prev));
-        }
-      })
-      .finally(() => {
-        if (!cancelled) setManifestLoading(false);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  const gallery = manifest ?? defaultGalleryManifest;
-  const filterKeys = useMemo(() => galleryFilterKeys(gallery), [gallery]);
-  const activeImages = useMemo(() => {
-    if (activeTab === "All") {
-      return filterKeys
-        .filter((k) => k !== "All")
-        .flatMap((key) => gallery[key].map((path) => ({ path, key })));
-    }
-    return (gallery[activeTab] ?? []).map((path) => ({ path, key: activeTab }));
-  }, [activeTab, gallery, filterKeys]);
+  const activeImages = useMemo(() => photosForTab(activeTab), [activeTab]);
 
   const showRelative = (delta: number) =>
     setSelectedIndex((prev) =>
@@ -76,16 +39,16 @@ const Gallery = () => {
     return () => window.removeEventListener("keydown", onKey);
   });
 
-  const openVideo = (title: string, youtubeId: string) => {
-    setCurrentVideo(youtubeId || defaultYoutubeId);
+  const openVideo = (youtubeId: string) => {
+    setCurrentVideo(youtubeId);
     setVideoOpen(true);
   };
 
   return (
     <Layout>
       <PageHeader
-        title="Event Gallery"
-        subtitle="Capturing the powerful moments and memories of IYES through the years"
+        title={galleryPage.title}
+        subtitle={galleryPage.subtitle}
         background="secondary"
       />
 
@@ -93,45 +56,21 @@ const Gallery = () => {
       <section className="py-8 bg-secondary/50">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-2">
-            <AnimatePresence mode="wait">
-              {manifestLoading ? (
-                <motion.div
-                  key="skeleton-tabs"
-                  className="flex flex-wrap justify-center gap-2"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  {["All", "2025", "2024", "2023"].map((i) => (
-                    <Skeleton key={i} className="h-10 w-16 rounded-full" />
-                  ))}
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="tabs"
-                  className="flex flex-wrap justify-center gap-2"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {filterKeys.map((year) => (
-                    <motion.button
-                      key={year}
-                      className={`px-4 py-2 rounded-full transition-colors ${
-                        activeTab === year
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-background/50 text-foreground/70 hover:text-foreground"
-                      }`}
-                      onClick={() => setActiveTab(year)}
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      {year}
-                    </motion.button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {galleryTabs.map((tab) => (
+              <motion.button
+                key={tab}
+                className={`px-4 py-2 rounded-full transition-colors ${
+                  activeTab === tab
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-background/50 text-foreground/70 hover:text-foreground"
+                }`}
+                onClick={() => setActiveTab(tab)}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {tab}
+              </motion.button>
+            ))}
           </div>
         </div>
       </section>
@@ -145,26 +84,14 @@ const Gallery = () => {
             transition={{ layout: { duration: 0.3, ease: "easeInOut" } }}
           >
             <AnimatePresence mode="popLayout">
-              {manifestLoading
-                ? Array.from({ length: 8 }).map((_, i) => (
-                    <motion.div
-                      key={`skeleton-${i}`}
-                      className="rounded-lg overflow-hidden aspect-square"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: i * 0.03 }}
-                    >
-                      <Skeleton className="w-full h-full rounded-lg" />
-                    </motion.div>
-                  ))
-                : activeImages.map(({ path }, index) => (
-                    <GalleryImage
-                      key={`${activeTab}-${path}`}
-                      path={path}
-                      index={index}
-                      onOpen={() => setSelectedIndex(index)}
-                    />
-                  ))}
+              {activeImages.map((item, index) => (
+                <GalleryImage
+                  key={`${item.album}-${item.image}`}
+                  item={item}
+                  index={index}
+                  onOpen={() => setSelectedIndex(index)}
+                />
+              ))}
             </AnimatePresence>
           </motion.div>
         </div>
@@ -175,44 +102,22 @@ const Gallery = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-heading text-foreground mb-4">
-              Video Highlights
+              {galleryPage.videos_title}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Experience the energy and impact of IYES through these event
-              recordings
+              {galleryPage.videos_subtitle}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                title: "IYES 2025 Opening Ceremony",
-                speaker: "Rev. Eastwood Anaba",
-                youtubeId: "8PEvCjwl58o",
-              },
-              {
-                title: "Pastor Brian's Keynote Address",
-                speaker: "Pastor Brian Jones Amoateng",
-                youtubeId: "",
-              },
-              {
-                title: "Youth Panel Discussion",
-                speaker: "Multiple Speakers",
-                youtubeId: "1w__rucVBMA",
-              },
-              {
-                title: "Worship and Musical Highlights",
-                speaker: "Hon. Sam George",
-                youtubeId: "",
-              },
-            ].map((video, idx) => (
+            {galleryPage.videos.map((video, idx) => (
               <motion.div
                 key={idx}
                 className="rounded-xl overflow-hidden aspect-video cursor-pointer hover:shadow-xl transition-shadow"
-                onClick={() => openVideo(video.title, video.youtubeId)}
+                onClick={() => openVideo(video.youtube_id)}
                 style={{
                   backgroundImage: `url(${
-                    videoBackgrounds[idx] || defaultBackground
+                    video.thumbnail || DEFAULT_VIDEO_THUMBNAIL
                   })`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
@@ -263,11 +168,16 @@ const Gallery = () => {
           {selectedIndex !== null && activeImages[selectedIndex] && (
             <>
               <img
-                key={activeImages[selectedIndex].path}
-                src={imageUrl(activeImages[selectedIndex].path)}
-                alt={captionFor(activeImages[selectedIndex].path)}
+                key={activeImages[selectedIndex].image}
+                src={activeImages[selectedIndex].image}
+                alt={altFor(activeImages[selectedIndex])}
                 className="w-full h-auto sm:w-auto max-h-[85vh] max-w-full object-contain sm:rounded-lg"
               />
+              {activeImages[selectedIndex].caption && (
+                <p className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent text-white text-sm text-center px-4 pt-8 pb-3 sm:rounded-b-lg">
+                  {activeImages[selectedIndex].caption}
+                </p>
+              )}
               {activeImages.length > 1 && (
                 <>
                   <button
@@ -314,21 +224,19 @@ const Gallery = () => {
   );
 };
 
-const captionFor = (path: string) =>
-  path.split("/").pop()?.replace(/\.[^.]+$/, "") ?? "Gallery";
+const altFor = ({ caption, album }: GalleryItem) => caption || `IYES ${album} gallery photo`;
 
 function GalleryImage({
-  path,
+  item,
   index,
   onOpen,
 }: {
-  path: string;
+  item: GalleryItem;
   index: number;
   onOpen: () => void;
 }) {
   const [loaded, setLoaded] = useState(false);
-  const src = imageUrl(path);
-  const caption = captionFor(path);
+  const alt = altFor(item);
 
   return (
     <motion.div
@@ -344,7 +252,7 @@ function GalleryImage({
       className="group relative overflow-hidden rounded-lg aspect-square cursor-pointer"
       role="button"
       tabIndex={0}
-      aria-label={`View ${caption}`}
+      aria-label={`View ${alt}`}
       onClick={onOpen}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -359,19 +267,20 @@ function GalleryImage({
         </div>
       )}
       <motion.img
-        src={src}
-        alt={caption}
+        src={item.image}
+        alt={alt}
+        loading="lazy"
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         onLoad={() => setLoaded(true)}
         initial={false}
         animate={{ opacity: loaded ? 1 : 0 }}
         transition={{ duration: 0.25 }}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
-        <p className="text-white p-4 text-sm capitalize">
-          {caption.replace(/[-_.]/g, " ")}
-        </p>
-      </div>
+      {item.caption && (
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
+          <p className="text-white p-4 text-sm">{item.caption}</p>
+        </div>
+      )}
     </motion.div>
   );
 }

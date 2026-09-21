@@ -173,10 +173,10 @@ const Speakers = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                name: "Dr. Mensa Otabil",
-                role: "Renowned Pastor",
-                year: "2020",
-                image: "/images/speakers/Mensa_Otabil.jpg"
+                name: "Nicholas Duncan-Williams",
+                role: "Founder & Senior Pastor",
+                year: "2026",
+                image: "/images/speakers/bishop-duncan.webp"
               },
               {
                 name: "Dr. Paul Enenche",

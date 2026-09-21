@@ -24,6 +24,8 @@ export default {
 				// - headings: "halyard-display" (from Typekit, as used on the demo)
 				// - body: "DM Sans" (Google Fonts, as used on the demo)
 				heading: ['halyard-display', '"Halyard Display"', '"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				// Condensed display face for the countdown; echoes the date lettering on the 2027 hero art
+				countdown: ['"Bebas Neue"', 'Impact', '"Arial Narrow"', 'sans-serif'],
 				sans: ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
 
 				// Legacy tokens (kept to avoid accidental breakage if any class remains)
