@@ -58,56 +58,68 @@ const Index = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
+      <section className="relative overflow-hidden bg-[#0f2d52]">
+        {/* Blurred, tinted copy of the hero art as a see-through backdrop */}
+        <div className="absolute inset-0 z-0" aria-hidden="true">
           <img
-            src="images/hero-image.jpeg"
-            alt="IYES Conference"
-            className="w-full h-full object-cover"
+            src="images/iyes-2027-hero.webp"
+            alt=""
+            className="w-full h-full object-cover scale-125 blur-3xl opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/60 to-black/35"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1a4173]/70 via-[#12335f]/80 to-[#0b2140]/95"></div>
+
+          {/* Abstract texture: soft glows, diagonal strokes (echoing the artwork's pattern), rings and dots */}
+          <div className="absolute -top-32 -left-24 h-96 w-96 rounded-full bg-[#3d7fc4]/25 blur-3xl"></div>
+          <div className="absolute -bottom-40 -right-24 h-[28rem] w-[28rem] rounded-full bg-[#e8b230]/15 blur-3xl"></div>
+          <svg
+            className="absolute inset-0 h-full w-full"
+            viewBox="0 0 1200 800"
+            preserveAspectRatio="xMidYMid slice"
+            fill="none"
+          >
+            <g stroke="#8fc3f0" strokeLinecap="round" opacity="0.14">
+              <line x1="-20" y1="220" x2="180" y2="60" strokeWidth="26" />
+              <line x1="60" y1="420" x2="330" y2="200" strokeWidth="14" />
+              <line x1="-40" y1="640" x2="260" y2="400" strokeWidth="34" />
+              <line x1="1000" y1="120" x2="1240" y2="-40" strokeWidth="30" />
+              <line x1="940" y1="520" x2="1220" y2="300" strokeWidth="16" />
+              <line x1="900" y1="860" x2="1200" y2="620" strokeWidth="36" />
+            </g>
+            <g stroke="#e8b230" strokeWidth="2" opacity="0.35">
+              <circle cx="110" cy="110" r="70" />
+              <circle cx="110" cy="110" r="105" opacity="0.5" />
+              <circle cx="1110" cy="690" r="90" />
+              <circle cx="1110" cy="690" r="130" opacity="0.5" />
+            </g>
+            <g fill="#e8b230" opacity="0.45">
+              <circle cx="300" cy="90" r="5" />
+              <circle cx="1040" cy="300" r="4" />
+              <circle cx="170" cy="560" r="4" />
+              <circle cx="880" cy="740" r="6" />
+            </g>
+            <g fill="#8fc3f0" opacity="0.18">
+              <path d="M1060 40 l40 70 h-80 z" />
+              <path d="M90 700 l34 60 h-68 z" />
+            </g>
+          </svg>
         </div>
-        <div className="container mx-auto px-4 relative z-10 text-center md:text-left py-20">
-          <div className="grid grid-cols-1 items-center">
-            {/* Iyes date pill */}
-            <div className="order-2 md:order-1 animate-fade-in">
-              <span className="inline-block font-heading text-white bg-white/10 px-3 py-1 rounded-full text-sm mb-4">
-                MARCH 10-13, 2026
-              </span>
-              <h1 className="font-heading text-white mb-4 leading-[0.95] text-[clamp(3rem,6.8vw,6.25rem)]">
-                INTERNATIONAL
-                <br />
-                YOUTH EMPOWERMENT
-                <br />
-                SUMMIT
-              </h1>
-              <p className="mb-6 max-w-xl text-[clamp(1.05rem,1.4vw,1.25rem)] text-white/85">
-                Join us for three days of inspiration, networking, and transformation with world-class speakers and youth leaders.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-             <Link to="/contact">
-                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto">
-                    Register Now
-                  </Button>
-             </Link>
-                <Button
-                  variant="outline"
-                  className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
-                >
-                  View Schedule
-                </Button>
-              </div>
-            </div>
-            {/* countdown div */}
-            <div className="order-1 md:order-2  justify-center hidden">
-              <div className="bg-card/70 backdrop-blur-sm p-6 rounded-xl border border-border/60 w-full max-w-md">
-                <h3 className="text-2xl font-heading text-foreground mb-2">Countdown to IYES 2025</h3>
-                <p className="text-muted-foreground mb-4 text-sm">
-                  Mark your calendar for the biggest youth summit of the year
-                </p>
-                <CountdownTimer />
-              </div>
-            </div>
+
+        <div className="container mx-auto px-4 relative z-10 pt-8 pb-10 md:pt-12 md:pb-14 text-center">
+          <img
+            src="images/iyes-2027-hero.webp"
+            alt="IYES 2027 - International Youth Empowerment Summit, Tuesday March 9th to 12th, 2027"
+            className="w-full max-w-6xl mx-auto h-auto rounded-xl md:rounded-2xl shadow-2xl ring-1 ring-[#e8b230]/40"
+          />
+          <p className="font-heading text-white/85 tracking-wide mt-8 mb-4">
+            Countdown to IYES 2027 &middot; Tuesday, March 9th &ndash; 12th, 2027
+          </p>
+          <CountdownTimer />
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+            <Link to="/contact">
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto">
+                Register Now
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -294,7 +306,7 @@ const Index = () => {
         <div className="container mx-auto px-4 relative z-10 text-center">
           <div className="max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-heading text-white mb-6">
-              Be Part of IYES 2026
+              Be Part of IYES 2027
             </h2>
             <p className="text-white/85 text-lg mb-8">
               Don't miss this opportunity to connect, learn, and grow with fellow young leaders from around the world.

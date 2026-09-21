@@ -8,39 +8,35 @@ interface TimeLeft {
   seconds: number;
 }
 
+const getTimeLeft = (targetDate: number): TimeLeft => {
+  const distance = Math.max(targetDate - Date.now(), 0);
+  return {
+    days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+    minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+    seconds: Math.floor((distance % (1000 * 60)) / 1000),
+  };
+};
+
 const CountdownTimer = () => {
   // Set this to your next event date
-  const targetDate = new Date("March 10, 2026 09:00:00").getTime();
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  const targetDate = new Date("March 9, 2027 09:00:00").getTime();
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => getTimeLeft(targetDate));
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance < 0) {
+      if (targetDate - Date.now() < 0) {
         clearInterval(interval);
         return;
       }
-
-      setTimeLeft({
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000),
-      });
+      setTimeLeft(getTimeLeft(targetDate));
     }, 1000);
 
     return () => clearInterval(interval);
   }, [targetDate]);
 
   return (
-    <div className="flex flex-wrap justify-center gap-4 md:gap-6 my-8">
+    <div className="flex flex-wrap justify-center gap-3 md:gap-6">
       {[
         { label: "Days", value: timeLeft.days },
         { label: "Hours", value: timeLeft.hours },
@@ -49,12 +45,12 @@ const CountdownTimer = () => {
       ].map((item) => (
         <div
           key={item.label}
-          className="flex flex-col items-center justify-center bg-secondary/80 rounded-lg p-3 md:p-4 w-20 md:w-28 backdrop-blur-sm animate-pulse-glow"
+          className="flex flex-col items-center justify-center bg-white/10 border border-[#e8b230]/40 rounded-lg p-3 md:p-4 w-20 md:w-28 backdrop-blur-sm animate-pulse-glow"
         >
-          <span className="text-2xl md:text-4xl font-heading text-foreground">
+          <span className="text-2xl md:text-4xl font-heading text-white">
             {String(item.value).padStart(2, "0")}
           </span>
-          <span className="text-xs md:text-sm text-muted-foreground mt-1">
+          <span className="text-xs md:text-sm text-white/70 mt-1">
             {item.label}
           </span>
         </div>
