@@ -1,0 +1,32 @@
+{
+  "title": "Event Gallery",
+  "subtitle": "Capturing the powerful moments and memories of IYES through the years",
+  "videos_title": "Video Highlights",
+  "videos_subtitle": "Experience the energy and impact of IYES through these event recordings",
+  "videos": [
+    {
+      "title": "IYES 2025 Opening Ceremony",
+      "speaker": "Rev. Eastwood Anaba",
+      "youtube_id": "8PEvCjwl58o",
+      "thumbnail": "/images/eastwood.jpg"
+    },
+    {
+      "title": "Pastor Brian's Keynote Address",
+      "speaker": "Pastor Brian Jones Amoateng",
+      "youtube_id": "AoCQfszF3qI",
+      "thumbnail": "/images/iyes-default.jpg"
+    },
+    {
+      "title": "Youth Panel Discussion",
+      "speaker": "Multiple Speakers",
+      "youtube_id": "1w__rucVBMA",
+      "thumbnail": "/images/sam-george.jpg"
+    },
+    {
+      "title": "Worship and Musical Highlights",
+      "speaker": "Hon. Sam George",
+      "youtube_id": "AoCQfszF3qI",
+      "thumbnail": "/images/iyes-default.jpg"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Lets you edit local files while developing: run `npm run cms` next to `npm run dev`,
+# then open http://localhost:8080/admin/
+local_backend: true
+
+site_url: https://iyes.global
+display_url: https://iyes.global
+
+# Uploaded photos go here and are referenced as /uploads/<file>
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+# Changes go draft -> ready -> published, so nothing goes live by accident
+publish_mode: editorial_workflow
+
+collections:
+  # One file per album (2025, 2024, Highlights...). Each album's photos are a single list,
+  # so a whole year's photos can be added in one place.
+  - name: "gallery"
+    label: "Gallery Albums"
+    label_singular: "Album"
+    folder: "content/gallery"
+    create: true
+    delete: true
+    extension: "json"
+    format: "json"
+    slug: "{{slug}}"
+    summary: "{{title}} ({{images.length}} photos)"
+    sortable_fields: ["title", "order"]
+    description: "Each album becomes a filter tab on the Gallery page (e.g. 2025, 2024, Highlights)."
+    fields:
+      - { label: "Album Title", name: "title", widget: "string", hint: "Shown on the filter tab, e.g. '2026' or 'Highlights'" }
+      - { label: "Tab Order", name: "order", widget: "number", value_type: "int", default: 1, hint: "Lower numbers appear first. 'All' is always first." }
+      - label: "Photos"
+        name: "images"
+        widget: "list"
+        summary: "{{fields.caption}}"
+        hint: "Click 'Add photo' for each image. Drag to reorder."
+        fields:
+          - { label: "Photo", name: "image", widget: "image" }
+          - { label: "Caption", name: "caption", widget: "string", required: false, hint: "Optional. Shown on hover and in the enlarged view." }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "gallery"
+        label: "Gallery Page"
+        file: "content/pages/gallery.json"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Page Subtitle", name: "subtitle", widget: "text" }
+          - { label: "Video Section Title", name: "videos_title", widget: "string" }
+          - { label: "Video Section Subtitle", name: "videos_subtitle", widget: "text" }
+          - label: "Videos"
+            name: "videos"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Video Title", name: "title", widget: "string" }
+              - { label: "Speaker", name: "speaker", widget: "string" }
+              - { label: "YouTube Video ID", name: "youtube_id", widget: "string", hint: "For https://youtube.com/watch?v=ABC123 enter ABC123" }
+              - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false, hint: "Optional. A default IYES image is used if left empty." }

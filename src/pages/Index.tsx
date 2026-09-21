@@ -110,7 +110,7 @@ const Index = () => {
             alt="IYES 2027 - International Youth Empowerment Summit, Tuesday March 9th to 12th, 2027"
             className="w-full max-w-6xl mx-auto h-auto rounded-xl md:rounded-2xl shadow-2xl ring-1 ring-[#e8b230]/40"
           />
-          <p className="font-heading text-white/85 tracking-wide mt-8 mb-4">
+          <p className="font-countdown text-2xl md:text-4xl text-white tracking-[0.12em] uppercase mt-8 mb-5 [text-shadow:0_2px_16px_rgba(232,178,48,0.35)]">
             Countdown to IYES 2027 &middot; Tuesday, March 9th &ndash; 12th, 2027
           </p>
           <CountdownTimer />

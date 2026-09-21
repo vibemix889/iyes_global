@@ -9,7 +9,7 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "update-gallery": "node scripts/generate-gallery-manifest.cjs"
+    "cms": "npx decap-server"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

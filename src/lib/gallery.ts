@@ -1,67 +1,71 @@
 /**
- * Gallery image manifest: keys are filter labels (2025, 2024, etc.),
- * values are image paths (relative to /images/iyes-gallery/ or absolute if starting with /).
+ * Gallery content, managed through Decap CMS (see public/admin/config.yml).
+ *
+ * Albums live in content/gallery/*.json and page copy in content/pages/gallery.json.
+ * Vite bundles them at build time, so there is no runtime fetch: when the CMS
+ * commits a change, Netlify rebuilds and the new content ships with the site.
  */
-export type GalleryManifest = Record<string, string[]>;
 
-const BASE = "/images/iyes-gallery";
-const MANIFEST_URL = `${BASE}/manifest.json`;
-
-/** Full URL for an image. Paths starting with / are used as-is; others are relative to BASE. */
-export function imageUrl(path: string): string {
-  return path.startsWith("/") ? path : `${BASE}/${path}`;
+export interface GalleryPhoto {
+  image: string;
+  caption?: string;
 }
 
-/** Fetch manifest; returns null on failure. */
-export async function fetchGalleryManifest(): Promise<GalleryManifest | null> {
-  try {
-    const res = await fetch(`${MANIFEST_URL}?t=${Date.now()}`);
-    if (!res.ok) return null;
-    const data = (await res.json()) as GalleryManifest;
-    return data && typeof data === "object" ? data : null;
-  } catch {
-    return null;
-  }
+export interface GalleryAlbum {
+  title: string;
+  order?: number;
+  images: GalleryPhoto[];
 }
 
-/** Fallback when manifest is missing or empty (current hardcoded gallery). */
-export const defaultGalleryManifest: GalleryManifest = {
-  "2025": [
-    "/images/woman-singer.jpg",
-    "/images/iyes-gallery/pb-joshua.jpeg",
-    "/images/iyes-crowd-flag.jpg",
-    "/images/happy-youth-2.jpg",
-    "/images/iyes-gallery/pb-white.jpeg",
-    "/images/male-singer.jpg",
-    "/images/joe-mettle.jpg",
-    "/images/iyes-gallery/pb-with-flag.jpeg",
-  ],
-  "2024": [
-    "/images/iyes-gallery/iyes-upsa.jpeg",
-    "/images/iyes-gallery/iyes-24-mahama-hug.jpeg",
-    "/images/iyes-gallery/iyes-at-10-2.jpeg",
-    "/images/iyes-gallery/pb-bawumia.jpeg",
-  ],
-  "2023": [
-    "/images/iyes-gallery/iyes-usa.jpeg",
-    "/images/iyes-gallery/pb-jackie-scholarship.jpeg",
-    "/images/iyes-gallery/pb-in-white-with-flag.jpeg",
-  ],
-  Highlights: [
-    "/images/iyes-gallery/iyes-21.jpeg",
-    "/images/iyes-gallery/iyes-23.jpeg",
-    "/images/iyes-gallery/iyes-duncan.jpeg",
-    "/images/iyes-gallery/pb-gentle-giant.jpeg",
-  ],
-};
+export interface GalleryVideo {
+  title: string;
+  speaker: string;
+  youtube_id: string;
+  thumbnail?: string;
+}
 
-/** Ordered filter keys for the UI (All first, then years/highlights). */
-export function galleryFilterKeys(manifest: GalleryManifest): string[] {
-  const keys = Object.keys(manifest).filter(
-    (k) => Array.isArray(manifest[k]) && manifest[k].length > 0
+export interface GalleryPageContent {
+  title: string;
+  subtitle: string;
+  videos_title: string;
+  videos_subtitle: string;
+  videos: GalleryVideo[];
+}
+
+export interface GalleryItem extends GalleryPhoto {
+  album: string;
+}
+
+export const ALL_TAB = "All";
+export const DEFAULT_VIDEO_THUMBNAIL = "/images/iyes-default.jpg";
+
+const albumModules = import.meta.glob<GalleryAlbum>("/content/gallery/*.json", {
+  eager: true,
+  import: "default",
+});
+
+const pageModules = import.meta.glob<GalleryPageContent>("/content/pages/gallery.json", {
+  eager: true,
+  import: "default",
+});
+
+export const galleryPage: GalleryPageContent = Object.values(pageModules)[0];
+
+/** Albums in CMS-defined order (lowest `order` first, then alphabetical). Empty albums are dropped. */
+export const galleryAlbums: GalleryAlbum[] = Object.values(albumModules)
+  .filter((album) => album.images?.length > 0)
+  .sort(
+    (a, b) =>
+      (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER) ||
+      a.title.localeCompare(b.title)
   );
-  const order = ["All", "2025", "2024", "2023", "Highlights"];
-  const ordered = order.filter((k) => k === "All" || keys.includes(k));
-  const rest = keys.filter((k) => !order.includes(k)).sort();
-  return [...ordered, ...rest];
+
+/** Filter tabs shown above the grid: "All" followed by each album title. */
+export const galleryTabs: string[] = [ALL_TAB, ...galleryAlbums.map((a) => a.title)];
+
+/** Photos for a tab, each tagged with its album. */
+export function photosForTab(tab: string): GalleryItem[] {
+  return galleryAlbums
+    .filter((album) => tab === ALL_TAB || album.title === tab)
+    .flatMap((album) => album.images.map((photo) => ({ ...photo, album: album.title })));
 }
