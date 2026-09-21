@@ -1,7 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
 import Layout from "@/components/layout/Layout";
 import PageHeader from "@/components/ui/PageHeader";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   fetchGalleryManifest,
@@ -18,6 +19,7 @@ const Gallery = () => {
   const [activeTab, setActiveTab] = useState<string>("All");
   const [videoOpen, setVideoOpen] = useState(false);
   const [currentVideo, setCurrentVideo] = useState<string | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const defaultYoutubeId = "AoCQfszF3qI";
   const videoBackgrounds = [
@@ -56,6 +58,23 @@ const Gallery = () => {
     }
     return (gallery[activeTab] ?? []).map((path) => ({ path, key: activeTab }));
   }, [activeTab, gallery, filterKeys]);
+
+  const showRelative = (delta: number) =>
+    setSelectedIndex((prev) =>
+      prev === null || activeImages.length === 0
+        ? prev
+        : (prev + delta + activeImages.length) % activeImages.length
+    );
+
+  useEffect(() => {
+    if (selectedIndex === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") showRelative(-1);
+      else if (e.key === "ArrowRight") showRelative(1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  });
 
   const openVideo = (title: string, youtubeId: string) => {
     setCurrentVideo(youtubeId || defaultYoutubeId);
@@ -143,6 +162,7 @@ const Gallery = () => {
                       key={`${activeTab}-${path}`}
                       path={path}
                       index={index}
+                      onOpen={() => setSelectedIndex(index)}
                     />
                   ))}
             </AnimatePresence>
@@ -234,6 +254,45 @@ const Gallery = () => {
         </div>
       </section>
 
+      <Dialog
+        open={selectedIndex !== null}
+        onOpenChange={(open) => !open && setSelectedIndex(null)}
+      >
+        <DialogContent className="w-screen max-w-screen sm:w-auto sm:max-w-[90vw] p-0 bg-transparent border-none shadow-none flex items-center justify-center">
+          <DialogTitle className="sr-only">Gallery image preview</DialogTitle>
+          {selectedIndex !== null && activeImages[selectedIndex] && (
+            <>
+              <img
+                key={activeImages[selectedIndex].path}
+                src={imageUrl(activeImages[selectedIndex].path)}
+                alt={captionFor(activeImages[selectedIndex].path)}
+                className="w-full h-auto sm:w-auto max-h-[85vh] max-w-full object-contain sm:rounded-lg"
+              />
+              {activeImages.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    aria-label="Previous image"
+                    onClick={() => showRelative(-1)}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 hover:bg-black/70 text-white p-2"
+                  >
+                    <ChevronLeft className="h-6 w-6" />
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Next image"
+                    onClick={() => showRelative(1)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 hover:bg-black/70 text-white p-2"
+                  >
+                    <ChevronRight className="h-6 w-6" />
+                  </button>
+                </>
+              )}
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+
       <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
         <DialogContent className="sm:max-w-[900px] p-0 bg-black border-none overflow-hidden">
           {currentVideo && (
@@ -255,10 +314,21 @@ const Gallery = () => {
   );
 };
 
-function GalleryImage({ path, index }: { path: string; index: number }) {
+const captionFor = (path: string) =>
+  path.split("/").pop()?.replace(/\.[^.]+$/, "") ?? "Gallery";
+
+function GalleryImage({
+  path,
+  index,
+  onOpen,
+}: {
+  path: string;
+  index: number;
+  onOpen: () => void;
+}) {
   const [loaded, setLoaded] = useState(false);
   const src = imageUrl(path);
-  const caption = path.split("/").pop()?.replace(/\.[^.]+$/, "") ?? "Gallery";
+  const caption = captionFor(path);
 
   return (
     <motion.div
@@ -272,6 +342,16 @@ function GalleryImage({ path, index }: { path: string; index: number }) {
         ease: [0.25, 0.46, 0.45, 0.94],
       }}
       className="group relative overflow-hidden rounded-lg aspect-square cursor-pointer"
+      role="button"
+      tabIndex={0}
+      aria-label={`View ${caption}`}
+      onClick={onOpen}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onOpen();
+        }
+      }}
     >
       {!loaded && (
         <div className="absolute inset-0 z-10">

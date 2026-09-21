@@ -93,7 +93,7 @@ const Contact = () => {
             {[
               {
                 question: "When is the next IYES event?",
-                answer: "The next IYES event is scheduled for March 10-13, 2026. Registration is already open on our website."
+                answer: "The next IYES event is scheduled for March 9-12, 2027. Registration is already open on our website."
               },
               {
                 question: "How can I register for IYES?",

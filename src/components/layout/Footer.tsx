@@ -69,7 +69,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start space-x-3">
                 <Calendar className="w-5 h-5 text-primary mt-0.5" />
-                <span className="text-muted-foreground">Next Event: March 10-13, 2026</span>
+                <span className="text-muted-foreground">Next Event: March 9-12, 2027</span>
               </li>
             </ul>
           </div>
