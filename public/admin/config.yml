@@ -8,6 +8,7 @@ local_backend: true
 
 site_url: https://iyes.global
 display_url: https://iyes.global
+logo_url: /images/iyes-logo.PNG
 
 # Uploaded photos go here and are referenced as /uploads/<file>
 media_folder: "public/uploads"
