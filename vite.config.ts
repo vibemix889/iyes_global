@@ -6,9 +6,9 @@ import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-// Serve the Decap CMS admin (public/admin) at /admin during dev instead of the SPA fallback.
-const decapAdminRoute = (): Plugin => ({
-  name: "decap-admin-route",
+// Serve the CMS admin (public/admin) at /admin during dev instead of the SPA fallback.
+const cmsAdminRoute = (): Plugin => ({
+  name: "cms-admin-route",
   configureServer(server) {
     server.middlewares.use((req, _res, next) => {
       if (req.url === "/admin" || req.url === "/admin/") req.url = "/admin/index.html";
@@ -24,7 +24,7 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   plugins: [
-    decapAdminRoute(),
+    cmsAdminRoute(),
     mdx({
       remarkPlugins: [remarkFrontmatter, [remarkMdxFrontmatter, { name: "frontmatter" }]],
     }),

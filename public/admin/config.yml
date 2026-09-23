@@ -1,25 +1,51 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: vibemix889/iyes_global
   branch: main
 
-# Lets you edit local files while developing: run `npm run cms` next to `npm run dev`,
-# then open http://localhost:8080/admin/
+# Editing local files during development works without a proxy server: open
+# http://localhost:8080/admin/ in Chrome or Edge and pick the project folder.
 local_backend: true
 
 site_url: https://iyes.global
 display_url: https://iyes.global
-logo_url: /images/iyes-logo.PNG
+
+# IYES branding on the login screen, the admin header and the browser tab.
+# Square 512x512 with a transparent background, as Sveltia recommends - the main
+# /images/iyes-logo.PNG is 7151px wide and 1 MB, far too heavy for a favicon.
+logo:
+  src: /images/iyes-cms-logo.png
+  show_in_header: true
+
+app_title: IYES Content Manager
 
 # Uploaded photos go here and are referenced as /uploads/<file>
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
+# Photos are shrunk and converted to WebP in the browser BEFORE they are saved, so a
+# 6 MB camera JPEG lands in the repo as a few hundred KB. This matters more than usual
+# here: git keeps every file forever, so unoptimised uploads would bloat the repo
+# permanently. 2048px is plenty for the full-size lightbox view.
+media_libraries:
+  all:
+    transformations:
+      raster_image:
+        format: webp
+        quality: 85
+        width: 2048
+        height: 2048
+      svg:
+        optimize: true
+
 # Changes go draft -> ready -> published, so nothing goes live by accident
 publish_mode: editorial_workflow
 
 collections:
-  # One file per album (2025, 2024, Highlights...). Each album's photos are a single list,
-  # so a whole year's photos can be added in one place.
+  # One file per album. A plain album (2025, 2024, Highlights...) is its own filter
+  # tab. A day/session of a multi-day event (Event Year filled in) instead joins the
+  # other days from that year under one tab named after the year, with day chips
+  # underneath - so starting with IYES 2026, one album per day/session, not per year.
   - name: "gallery"
     label: "Gallery Albums"
     label_singular: "Album"
@@ -29,20 +55,41 @@ collections:
     extension: "json"
     format: "json"
     slug: "{{slug}}"
-    summary: "{{title}} ({{images.length}} photos)"
-    sortable_fields: ["title", "order"]
-    description: "Each album becomes a filter tab on the Gallery page (e.g. 2025, 2024, Highlights)."
+    summary: "{{title}}"
+    sortable_fields: ["title", "order", "event_year"]
+    view_groups:
+      - { label: "Event Year", field: event_year }
+    description: "Each plain album is a filter tab on the Gallery page (e.g. 2025, Highlights). For IYES 2026 onward, create one album per day/session instead and set its Event Year - see the hint on that field."
     fields:
-      - { label: "Album Title", name: "title", widget: "string", hint: "Shown on the filter tab, e.g. '2026' or 'Highlights'" }
-      - { label: "Tab Order", name: "order", widget: "number", value_type: "int", default: 1, hint: "Lower numbers appear first. 'All' is always first." }
-      - label: "Photos"
-        name: "images"
-        widget: "list"
-        summary: "{{fields.caption}}"
-        hint: "Click 'Add photo' for each image. Drag to reorder."
-        fields:
-          - { label: "Photo", name: "image", widget: "image" }
-          - { label: "Caption", name: "caption", widget: "string", required: false, hint: "Optional. Shown on hover and in the enlarged view." }
+      - {
+          label: "Album Title",
+          name: "title",
+          widget: "string",
+          hint: "For a plain album this is the tab label, e.g. '2025' or 'Highlights'. For an event day (Event Year filled in) this is the day's label instead, e.g. 'Day 1', 'Day 4 – Morning', or 'National Youth All Night Service'.",
+        }
+      - {
+          label: "Event Year (day-by-day events only)",
+          name: "event_year",
+          widget: "string",
+          required: false,
+          hint: "Fill in only for a day/session of a multi-day IYES year, e.g. '2026'. Every album sharing the same Event Year is grouped under one '2026' tab with day chips, so Day 1's morning and evening photos can share a single album while Day 4's morning and its 'National Youth All Night Service' get separate albums. Leave blank for a plain album like '2025' or 'Highlights'.",
+        }
+      - {
+          label: "Order",
+          name: "order",
+          widget: "number",
+          value_type: "int",
+          default: 1,
+          hint: "Lower numbers appear first. 'All' is always first. For an event day, this also orders its day chip within its year (e.g. Day 1 = 1, Day 2 = 2, Day 4 - Morning = 4, National Youth All Night Service = 5) - the year tab itself takes its position from its earliest day.",
+        }
+      - {
+          label: "Photos",
+          name: "images",
+          widget: "image",
+          multiple: true,
+          required: false,
+          hint: "Drag a whole folder of photos in at once, or click to browse and select many files together. They are automatically shrunk and converted to WebP as they upload. Drag a photo to reorder it.",
+        }
 
   - name: "pages"
     label: "Pages"
