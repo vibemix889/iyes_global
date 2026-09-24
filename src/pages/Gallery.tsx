@@ -8,19 +8,33 @@ import {
   galleryPage,
   galleryTabs,
   photosForTab,
+  daysForTab,
+  thumbnailUrl,
+  THUMBNAIL_WIDTHS,
   DEFAULT_VIDEO_THUMBNAIL,
   ALL_TAB,
+  ALL_DAYS,
   type GalleryItem,
 } from "@/lib/gallery";
 import { motion, AnimatePresence } from "motion/react";
 
 const Gallery = () => {
   const [activeTab, setActiveTab] = useState<string>(ALL_TAB);
+  const [activeDay, setActiveDay] = useState<string>(ALL_DAYS);
   const [videoOpen, setVideoOpen] = useState(false);
   const [currentVideo, setCurrentVideo] = useState<string | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
-  const activeImages = useMemo(() => photosForTab(activeTab), [activeTab]);
+  const selectTab = (tab: string) => {
+    setActiveTab(tab);
+    setActiveDay(ALL_DAYS);
+  };
+
+  const days = useMemo(() => daysForTab(activeTab), [activeTab]);
+  const activeImages = useMemo(
+    () => photosForTab(activeTab, activeDay),
+    [activeTab, activeDay]
+  );
 
   const showRelative = (delta: number) =>
     setSelectedIndex((prev) =>
@@ -64,7 +78,7 @@ const Gallery = () => {
                     ? "bg-primary text-primary-foreground"
                     : "bg-background/50 text-foreground/70 hover:text-foreground"
                 }`}
-                onClick={() => setActiveTab(tab)}
+                onClick={() => selectTab(tab)}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -72,6 +86,26 @@ const Gallery = () => {
               </motion.button>
             ))}
           </div>
+
+          {days && (
+            <div className="flex flex-wrap justify-center gap-2 mt-4">
+              {days.map((day) => (
+                <motion.button
+                  key={day}
+                  className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
+                    activeDay === day
+                      ? "bg-accent text-accent-foreground"
+                      : "bg-background/40 text-foreground/60 hover:text-foreground"
+                  }`}
+                  onClick={() => setActiveDay(day)}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {day}
+                </motion.button>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -267,9 +301,12 @@ function GalleryImage({
         </div>
       )}
       <motion.img
-        src={item.image}
+        src={thumbnailUrl(item.image, 600)}
+        srcSet={THUMBNAIL_WIDTHS.map((w) => `${thumbnailUrl(item.image, w)} ${w}w`).join(", ")}
+        sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
         alt={alt}
         loading="lazy"
+        decoding="async"
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         onLoad={() => setLoaded(true)}
         initial={false}

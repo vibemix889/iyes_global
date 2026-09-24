@@ -6,15 +6,14 @@
     <meta name="robots" content="noindex" />
     <title>IYES Content Manager</title>
     <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script>
-      // On localhost, log in against the live site's Identity instance (only used when `npm run cms` isn't running)
-      if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
-        localStorage.setItem("netlifySiteURL", "https://iyes.global");
-      }
-    </script>
   </head>
   <body>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <!--
+      Sveltia CMS (a drop-in successor to Decap CMS) - chosen for bulk photo upload
+      and automatic WebP conversion, neither of which Decap supports.
+      Pinned to patch releases of 0.220 so a future minor release can't change the
+      admin UI without us testing it first.
+    -->
+    <script src="https://unpkg.com/@sveltia/cms@^0.220.0/dist/sveltia-cms.js"></script>
   </body>
 </html>
